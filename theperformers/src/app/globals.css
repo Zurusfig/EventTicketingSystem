@@ -1,26 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Unbounded:wght@200..900&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-primary: "Unbounded", sans-serif;
+  --font-secondary: "Inter", sans-serif;
+}
+
+:root {
+  /* Semantic Colors */
+  --color-bg: #ffffff; /* White */
+  --color-text: #1d293d; /* Navy Main */
+  --color-text-alternate: #f1f5f9; /* A darker gray-blue */
+  --color-text-muted: #475569; /* A muted gray-blue */
+  --color-surface: #f8fafc; /* For cards (a very light gray) */
+  --color-border: #e5e7eb; /* Light gray border */
+
+  /* Brand Accent Colors */
+  --accent-lime: #c7e651;
+  --accent-blue: #51a2ff;
+  --accent-purple: #c27aff;
+  --accent-yellow: #ffdf20;
+  --accent-navy: #1d293d;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-secondary: "Inter", sans-serif;
+  --font-primary: "Unbounded", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Semantic Colors */
+    --color-bg: #1d293d; /* Navy Main */
+    --color-text: #f1f5f9; /* Off-white */
+    --color-text-alternate: #1d293d; /* A darker gray-blue */
+    --color-text-muted: #94a3b8; /* Lighter gray-blue */
+    --color-surface: #2c3a54; /* A slightly lighter Navy for cards */
+    --color-border: #475569; /* A mid-gray-blue border */
+
+    /* Brand Accent Colors (they are bright, so they work well!) */
+    --accent-lime: #c7e651;
+    --accent-blue: #51a2ff;
+    --accent-purple: #c27aff;
+    --accent-yellow: #ffdf20;
+    --accent-navy: #1d293d; /* This one might be hard to see */
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-secondary), Helvetica, sans-serif;
 }
