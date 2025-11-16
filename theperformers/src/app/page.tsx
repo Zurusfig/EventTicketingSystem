@@ -29,7 +29,7 @@ export default function Home() {
     >
       {/* ---------- TOP LEFT NAV ---------- */}
       <div className="pt-5 pl-10 flex items-center gap-6 text-[#999999]">
-        <div className="text-4xl font-extrabold">TP</div>
+        <div className="text-4xl font-extrabold text-lime-400">TP</div>
         <div className="text-lg cursor-pointer hover:text-black">
           Manage Event
         </div>
