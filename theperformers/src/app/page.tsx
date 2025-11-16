@@ -27,11 +27,6 @@ export default function Home() {
       via-[#D4D4D4] 
       to-[#999999]"
     >
-      {/* ---------- TOP LEFT NAV ---------- */}
-      <div className="pt-5 pl-10 flex items-center gap-6 text-[#999999]">
-        <div className="text-4xl font-extrabold text-lime-400">TP</div>
-        
-      </div>
 
       {/* ---------- MAIN CONTENT (Centered) ---------- */}
       <div className="flex flex-col items-center mt-10">

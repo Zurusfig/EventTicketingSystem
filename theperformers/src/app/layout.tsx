@@ -36,7 +36,7 @@ export default async function RootLayout({
       >
         <NextAuthProvider session={nextAuthSession}>
         <TopMenu />
-          <main className="">
+          <main className="mt-24 min-h-[calc(100vh+4rem)]">
             {children}
           </main>
         </NextAuthProvider>
