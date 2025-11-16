@@ -1,5 +1,6 @@
 import { Calendar, MapPin, User, Ticket } from "lucide-react";
 import ImageSlider from "@/components/ImageDisplay/ImageSilder";
+import getEvent from "@/libs/getEvent";
 
 // -------- MOCK FALLBACK DATA --------
 const mockEvent = {
@@ -34,10 +35,13 @@ async function fetchEvent(id: string) {
 export default async function EventDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ eventId: string }>;
 }) {
-  //const event = await fetchEvent(params.id);
-  const event = mockEvent;
+  // const e = (await getEvent(params.id)).data;
+  const { eventId } = await params;
+  const event = (await getEvent(eventId)).data;
+
+  console.log(event);
 
   return (
     <div className="px-10 py-10 min-h-screen w-full 
@@ -46,10 +50,10 @@ export default async function EventDetailPage({
       via-[#D4D4D4] 
       to-[#999999] min-h-screen">
       {/* Title */}
-      <h1 className="text-3xl font-bold mb-6">{event.name}</h1>
+      <h1 className="text-3xl font-bold mb-6 text-text-color">{event.name}</h1>
 
       {/* Main Container */}
-      <div className="bg-white p-6 rounded-xl shadow-lg flex flex-col lg:flex-row gap-6">
+      <div className="bg-bg-alternate-color p-6 rounded-xl shadow-lg flex flex-col lg:flex-row gap-6">
 
         {/* Poster */}
         <div className="flex-1 min-w-[300px]">
@@ -69,7 +73,7 @@ export default async function EventDetailPage({
       </div>
 
         {/* Event Info */}
-        <div className="flex-1 space-y-3 text-gray-800">
+        <div className="flex-1 space-y-3 text-text-alternate-color">
 
           <div className="flex items-center gap-2">
             <Calendar size={18} />
@@ -92,7 +96,7 @@ export default async function EventDetailPage({
           </div>
 
           {/* Description */}
-          <p className="text-sm text-gray-700 mt-4 leading-relaxed">
+          <p className="text-sm text-text-alternate-color mt-4 leading-relaxed">
             {event.description}
           </p>
         </div>
@@ -100,7 +104,7 @@ export default async function EventDetailPage({
 
       {/* Request Ticket Button */}
       <div className="mt-8 flex justify-center">
-        <button className="bg-lime-400 hover:bg-lime-500 transition text-black font-semibold px-10 py-3 rounded-full shadow-md">
+        <button className="cursor-pointer bg-lime-color hover:bg-lime-color/90 hover:scale-105 transition text-black font-semibold px-10 py-3 rounded-full shadow-md">
           Request Ticket
         </button>
       </div>
