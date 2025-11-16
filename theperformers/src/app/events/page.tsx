@@ -1,5 +1,4 @@
 import EventCard from "@/components/UpcomingEvent/EventCard";
-import { mock } from "node:test";
 
 type Event = {
   _id: string;
