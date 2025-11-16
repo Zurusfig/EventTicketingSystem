@@ -18,7 +18,7 @@ export default function TopMenu() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  console.log(session);
+  console.log
 
   return (
     <nav className="fixed inset-x-0 top-0 z-50 bg-bg-alternate-color text-text-alternate-color border-b border-border">

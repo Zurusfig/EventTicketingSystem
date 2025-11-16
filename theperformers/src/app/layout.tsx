@@ -36,7 +36,7 @@ export default async function RootLayout({
       >
         <NextAuthProvider session={nextAuthSession}>
         <TopMenu />
-          <main className="mt-12">
+          <main className="">
             {children}
           </main>
         </NextAuthProvider>
