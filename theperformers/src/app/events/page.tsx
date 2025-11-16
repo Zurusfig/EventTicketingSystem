@@ -77,7 +77,11 @@ export default async function EventsPage() {
   ];
 
   return (
-    <div className="px-10 py-8 bg-gradient-to-b from-gray-100 to-gray-300 min-h-screen">
+    <div className="px-10 py-8 min-h-screen w-full 
+      bg-gradient-to-b 
+      from-white 
+      via-[#D4D4D4] 
+      to-[#999999]">
       <h1 className="text-3xl font-bold mb-6">Upcoming Events</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

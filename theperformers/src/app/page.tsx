@@ -30,12 +30,7 @@ export default function Home() {
       {/* ---------- TOP LEFT NAV ---------- */}
       <div className="pt-5 pl-10 flex items-center gap-6 text-[#999999]">
         <div className="text-4xl font-extrabold text-lime-400">TP</div>
-        <div className="text-lg cursor-pointer hover:text-black">
-          Manage Event
-        </div>
-        <div className="text-lg cursor-pointer hover:text-black">
-          Manage Ticket Request
-        </div>
+        
       </div>
 
       {/* ---------- MAIN CONTENT (Centered) ---------- */}
@@ -54,13 +49,13 @@ export default function Home() {
             src={images[index]}
             alt="Slideshow"
             fill
-            className="object-cover transition duration-700"
+            className="object-cover transition duration-70000"
           />
         </div>
 
         <button className="mt-8 px-10 py-3 rounded-full 
           bg-lime-400 hover:bg-lime-500 transition text-[#222] font-semibold shadow"
-          onClick={() => window.location.href = '/upcoming_event'}>
+          onClick={() => window.location.href = '/events'}>
           Get Started
         </button>
 
