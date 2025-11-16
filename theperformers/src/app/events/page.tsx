@@ -68,23 +68,24 @@ export default async function EventsPage() {
 
   // Rotating pastel colors matching your mockup
   const colors = [
-    "bg-lime-300",
-    "bg-purple-300",
-    "bg-blue-300",
-    "bg-yellow-300",
-    "bg-indigo-300",
-    "bg-green-300"
+    "bg-[var(--sys-accent-lime)]",
+    "bg-[var(--sys-accent-blue)]",
+    "bg-[var(--sys-accent-purple)]",
+    "bg-[var(--sys-accent-yellow)]",
   ];
 
   return (
-    <div className="px-10 py-8 min-h-screen w-full 
-      bg-gradient-to-b 
-      from-white 
-      via-[#D4D4D4] 
-      to-[#999999]">
-      <h1 className="text-3xl font-bold mb-6">Upcoming Events</h1>
+    <div className="px-4 sm:px-10 py-8 min-h-screen w-full 
+  bg-gradient-to-b from-white via-[#D4D4D4] to-[#999999]
+  
+">
+      <h1 className="text-3xl font-bold mb-6 text-center sm:text-left">Upcoming Events</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div
+        className="grid gap-8 
+        grid-cols-[repeat(auto-fit,minmax(260px,1fr))]
+        place-items-center"
+      >
         {events.map((ev, idx) => (
           <EventCard
             key={ev._id}
