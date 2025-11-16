@@ -23,6 +23,35 @@
   --sys-accent-purple: #c27aff;
   --sys-accent-yellow: #ffdf20;
   --sys-accent-navy: #1d293d;
+  
+  --sys-gradient-primary: linear-gradient(90deg,rgba(199, 230, 81, 1) 0%, rgba(194, 122, 255, 1) 50%, rgba(255, 223, 32, 1) 100%);
+  --sys-gradient-secondary: linear-gradient(90deg,rgba(194, 122, 255, 1) 0%, rgba(255, 223, 32, 1) 50%, rgba(29, 41, 61, 1) 100%);
+}
+
+@layer utilities {
+  .bg-gradient-primary {
+    background-image: var(--sys-gradient-primary);
+  }
+
+  .text-gradient-primary {
+    background-image: var(--sys-gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .bg-gradient-secondary {
+    background-image: var(--sys-gradient-secondary);
+  }
+
+  .text-gradient-secondary {
+    background-image: var(--sys-gradient-secondary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  
 }
 
 @theme inline {
@@ -38,6 +67,8 @@
   --color-purple-color: var(--sys-accent-purple);
   --color-yellow-color: var(--sys-accent-yellow);
   --color-navy-color: var(--sys-accent-navy);
+  --color-gradient-primary: var(--sys-gradient-primary);
+  --color-gradient-secondary: var(--sys-gradient-secondary);
   --font-secondary: var(--font-secondary);
   --font-primary: var(--font-primary);
 }
@@ -59,6 +90,9 @@
     --sys-accent-purple: #c27aff;
     --sys-accent-yellow: #ffdf20;
     --sys-accent-navy: #1d293d; /* This one might be hard to see */
+
+    --sys-gradient-primary: linear-gradient(90deg,rgba(199, 230, 81, 1) 0%, rgba(194, 122, 255, 1) 50%, rgba(255, 223, 32, 1) 100%);
+    --sys-gradient-secondary: linear-gradient(90deg,rgba(194, 122, 255, 1) 0%, rgba(255, 223, 32, 1) 50%, rgba(29, 41, 61, 1) 100%);
   }
 }
 
