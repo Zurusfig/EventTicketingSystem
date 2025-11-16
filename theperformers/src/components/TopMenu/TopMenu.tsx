@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import TopMenuItem from "./TopMenuItem";
 
 export default function TopMenu() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -22,18 +23,12 @@ export default function TopMenu() {
 
           {/* 2. Desktop Menu Links (hidden on small screens) */}
           <div className="hidden md:flex justify-between font-primary md:items-center md:space-x-8 w-[80%]">
-            <div>
-              <button className="cursor-pointer hover:scale-105 px-6 py-2 transition-all duration-300 text-md">
-                Events
-              </button>
-              <button className="cursor-pointer hover:scale-105 px-6 py-2 transition-all duration-300 text-md">
-                Request Tickets
-              </button>
+            <div className="flex justify-between space-x-8">
+              <TopMenuItem text="Events" pageRoute="/events" />
+              <TopMenuItem text="Request Tickets" pageRoute="/request-tickets" />
             </div>
             <div>
-              <button className="cursor-pointer hover:scale-105 px-6 py-2 transition-all duration-300 text-md">
-                My Tickets
-              </button>
+              <TopMenuItem text="My Tickets" pageRoute="/my-tickets" />
             </div>
           </div>
 
@@ -81,15 +76,15 @@ export default function TopMenu() {
       >
         {/* Mobile Menu Links */}
         <div className="px-4 pt-4 pb-2 space-y-2 font-primary">
-          <button className="block w-full text-left cursor-pointer hover:scale-105 px-4 py-2 transition-all duration-300 text-md">
-            Events
-          </button>
-          <button className="block w-full text-left cursor-pointer hover:scale-105 px-4 py-2 transition-all duration-300 text-md">
-            Request Tickets
-          </button>
-          <button className="block w-full text-left cursor-pointer hover:scale-105 px-4 py-2 transition-all duration-300 text-md">
-            My Tickets
-          </button>
+          <div className="block w-full text-left">
+            <TopMenuItem text="Events" pageRoute="/events" />
+          </div>
+          <div className="block w-full text-left">
+            <TopMenuItem text="Request Tickets" pageRoute="/request-tickets" />
+          </div>
+          <div className="block w-full text-left">
+            <TopMenuItem text="My Tickets" pageRoute="/my-tickets" />
+          </div>
         </div>
 
         {/* Mobile Log In Button */}
