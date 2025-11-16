@@ -5,51 +5,93 @@ import { useState } from "react";
 export default function CreateEventForm() {
   const [name, setName] = useState("");
   const [eventDate, setEventDate] = useState("");
-  const [detail, setDetail] = useState("");
+  const [description, setDescription] = useState("");
+  const [venue, setVenue] = useState("");
+  const [organizer, setOrganizer] = useState("");
+  const [availableTicket, setAvailableTicket] = useState<number | "">("");
+
   const [images, setImages] = useState<string[]>([]);
   const [index, setIndex] = useState(0);
 
-  /** Handle Upload */
+  /** Upload multiple images */
   function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const files = e.target.files;
     if (!files) return;
 
-    const newImages = [...images];
-    for (let f of files) {
-      const url = URL.createObjectURL(f);
-      newImages.push(url);
+    const arr = [...images];
+    for (let file of files) {
+      arr.push(URL.createObjectURL(file));
     }
-
-    setImages(newImages);
-
-    // show first newly uploaded image
-    setIndex(newImages.length - files.length);
+    setImages(arr);
   }
 
-  /** Delete image */
+  /** Remove a specific image */
   function removeImage(i: number) {
     const updated = images.filter((_, idx) => idx !== i);
     setImages(updated);
 
-    if (index >= updated.length) {
-      setIndex(0);
+    if (index >= updated.length) setIndex(0);
+  }
+
+  /** Submit event to backend */
+  async function handleSubmit() {
+    if (!name || !eventDate || !venue || !organizer) {
+      alert("Please fill all required fields!");
+      return;
+    }
+
+    const body = {
+      name,
+      description,
+      eventDate,
+      venue,
+      organizer,
+      availableTicket: Number(availableTicket) || 0,
+      posterPicture: images, // matches backend
+    };
+
+    try {
+      const token = localStorage.getItem("token"); // MUST be admin token
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/events`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // REQUIRED BY BACKEND
+          },
+          body: JSON.stringify(body),
+        }
+      );
+
+      const json = await res.json();
+
+      if (!res.ok) {
+        alert(json.message || "Failed to create event.");
+        return;
+      }
+
+      alert("Event created successfully!");
+      window.location.href = "/admin/manage-events";
+
+    } catch (err) {
+      alert("Server error");
     }
   }
 
   return (
-    <div
-      className="w-full bg-purple-300 p-6 sm:p-10 rounded-xl 
-      shadow-lg border"
-    >
-      {/* GRID: LEFT FORM + RIGHT IMAGE */}
+    <div className="w-full bg-purple-300 p-6 sm:p-10 rounded-xl shadow-lg border">
+
+      {/* GRID layout */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        {/* LEFT SIDE */}
+        {/* LEFT SIDE FORM */}
         <div className="md:col-span-2 space-y-4">
 
           {/* NAME */}
           <div>
-            <label className="font-semibold">Name</label>
+            <label className="font-semibold">Name *</label>
             <input
               className="w-full mt-1 px-4 py-2 rounded-md border"
               value={name}
@@ -60,7 +102,7 @@ export default function CreateEventForm() {
 
           {/* DATE */}
           <div>
-            <label className="font-semibold">Date</label>
+            <label className="font-semibold">Date *</label>
             <input
               type="date"
               className="w-full mt-1 px-4 py-2 rounded-md border"
@@ -69,25 +111,61 @@ export default function CreateEventForm() {
             />
           </div>
 
-          {/* DETAILS */}
+          {/* VENUE */}
           <div>
-            <label className="font-semibold">Detail</label>
-            <textarea
-              className="w-full mt-1 px-4 py-2 rounded-md border h-[180px]"
-              value={detail}
-              onChange={(e) => setDetail(e.target.value)}
-              placeholder="Enter event details..."
+            <label className="font-semibold">Venue *</label>
+            <input
+              className="w-full mt-1 px-4 py-2 rounded-md border"
+              value={venue}
+              onChange={(e) => setVenue(e.target.value)}
+              placeholder="CU Sports Complex"
             />
           </div>
 
+          {/* ORGANIZER */}
+          <div>
+            <label className="font-semibold">Organizer *</label>
+            <input
+              className="w-full mt-1 px-4 py-2 rounded-md border"
+              value={organizer}
+              onChange={(e) => setOrganizer(e.target.value)}
+              placeholder="Event Organizer"
+            />
+          </div>
+
+          {/* TICKETS */}
+          <div>
+            <label className="font-semibold">Available Tickets</label>
+            <input
+              type="number"
+              className="w-full mt-1 px-4 py-2 rounded-md border"
+              value={availableTicket}
+              onChange={(e) =>
+                setAvailableTicket(
+                  e.target.value === "" ? "" : Number(e.target.value)
+                )
+              }
+              placeholder="Number of tickets"
+            />
+          </div>
+
+          {/* DESCRIPTION */}
+          <div>
+            <label className="font-semibold">Description</label>
+            <textarea
+              className="w-full mt-1 px-4 py-2 rounded-md border h-[180px]"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Enter event details..."
+            />
+          </div>
         </div>
 
-        {/* RIGHT SIDE: IMAGE SLIDER */}
+        {/* RIGHT SIDE IMAGE UPLOAD */}
         <div className="flex flex-col items-center">
 
-          {/* IMAGE BOX */}
+          {/* Image preview */}
           <div className="relative w-full h-[180px] bg-white rounded-lg border flex items-center justify-center overflow-hidden">
-
             {images.length === 0 ? (
               <p className="text-gray-500 text-sm">No image selected</p>
             ) : (
@@ -97,7 +175,6 @@ export default function CreateEventForm() {
                   className="w-full h-full object-cover rounded-lg"
                 />
 
-                {/* remove button */}
                 <button
                   onClick={() => removeImage(index)}
                   className="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded"
@@ -106,29 +183,29 @@ export default function CreateEventForm() {
                 </button>
               </>
             )}
-
           </div>
 
-          {/* DOT INDICATOR */}
+          {/* Slider dots */}
           {images.length > 1 && (
             <div className="flex gap-2 mt-3">
               {images.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setIndex(i)}
-                  className={`w-3 h-3 rounded-full transition 
-                  ${i === index ? "bg-black scale-110" : "bg-gray-400"}`}
+                  className={`w-3 h-3 rounded-full ${
+                    index === i ? "bg-black" : "bg-gray-400"
+                  }`}
                 />
               ))}
             </div>
           )}
 
-          {/* UPLOAD BUTTON */}
+          {/* Upload button */}
           <input
             type="file"
+            id="imgUpload"
             multiple
             accept="image/*"
-            id="imgUpload"
             className="hidden"
             onChange={handleImageUpload}
           />
@@ -137,22 +214,27 @@ export default function CreateEventForm() {
             htmlFor="imgUpload"
             className="mt-3 px-4 py-2 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300"
           >
-            Add Image
+            Add Images
           </label>
-
         </div>
-
       </div>
 
-      {/* ACTION BUTTONS */}
+      {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-4 justify-end mt-8">
-        <button className="px-6 py-2 bg-lime-300 rounded-lg font-semibold">
+
+        <button
+          onClick={handleSubmit}
+          className="px-6 py-2 bg-lime-300 rounded-lg font-semibold"
+        >
           Create Event
         </button>
+
         <button className="px-6 py-2 bg-red-400 text-white rounded-lg font-semibold">
           Cancel
         </button>
+
       </div>
+
     </div>
   );
 }
