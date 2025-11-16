@@ -70,10 +70,13 @@ export default function TopMenu() {
         </div>
       </div>
 
-      {/* 4. Mobile Menu Dropdown */}
-      {/* This uses the 'isMobileMenuOpen' state to conditionally apply 'block' or 'hidden' */}
+      {/* 4. Mobile Menu Dropdown with animation */}
       <div
-        className={`${isMobileMenuOpen ? "block" : "hidden"} md:hidden`}
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-out transform ${
+          isMobileMenuOpen
+            ? "max-h-96 opacity-100 translate-y-0"
+            : "max-h-0 opacity-0 -translate-y-2"
+        }`}
         id="mobile-menu"
       >
         {/* Mobile Menu Links */}
