@@ -18,17 +18,20 @@ export function useLoginForm() {
         setLoading(true);
         setError(null);
 
-        const res = await signIn("credentials", {
-            email,
-            password,
-            callbackUrl: "/",
-        });
+    const res = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+      callbackUrl: "/",
+    });
 
-        if(res?.error) {
-            setError(res.error);
-        } else if(res?.url) {
-            window.location.href = res.url || "/";
-        }
+    if (res?.error) {
+      setError(res.error);
+    } else if (res?.url) {
+      window.location.href = res.url || "/";
+    }
+
+    setLoading(false);
     };
 
 

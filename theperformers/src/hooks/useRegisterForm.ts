@@ -14,11 +14,11 @@ export function useRegisterForm() {
 
     const router = useRouter();
 
-    console.log(process.env.NEXT_PUBLIC_API_URL);
+    // console.log(process.env.NEXT_PUBLIC_API_URL);
 
-    console.log(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/register`);
+    // console.log(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/register`);
 
-    console.log(name, email, password, tel);
+    // console.log(name, email, password, tel);
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();

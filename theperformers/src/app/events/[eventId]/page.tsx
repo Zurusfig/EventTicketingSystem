@@ -44,11 +44,7 @@ export default async function EventDetailPage({
   console.log(event);
 
   return (
-    <div className="px-10 py-10 min-h-screen w-full 
-      bg-gradient-to-b 
-      from-white 
-      via-[#D4D4D4] 
-      to-[#999999] min-h-screen">
+    <div className="px-10 py-10 min-h-screen w-full min-h-screen">
       {/* Title */}
       <h1 className="text-3xl font-bold mb-6 text-text-color">{event.name}</h1>
 

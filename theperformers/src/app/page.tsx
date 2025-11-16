@@ -21,25 +21,21 @@ export default function Home() {
 
   return (
     <main
-      className="min-h-screen w-full 
-      bg-gradient-to-b 
-      from-white 
-      via-[#D4D4D4] 
-      to-[#999999]"
+      className="min-h-screen w-full"
     >
 
       {/* ---------- MAIN CONTENT (Centered) ---------- */}
       <div className="flex flex-col items-center mt-10">
 
-        <h1 className="text-4xl font-bold text-center text-[#222] text-black">
+        <h1 className="text-4xl font-bold text-center text-[#222] text-text-color">
           Welcome to The Performers
         </h1>
 
-        <p className="text-center text-gray-700 mt-3">
+        <p className="text-center text-text-color/80 mt-3">
           Every Ticket, One Request Away.
         </p>
 
-        <div className="mt-10 w-[600px] h-[400px] bg-white rounded-md shadow-md relative overflow-hidden">
+        <div className="mt-10 w-[600px] h-[400px] bg-white p-6 rounded-md shadow-md relative overflow-hidden">
           <Image
             src={images[index]}
             alt="Slideshow"
@@ -48,8 +44,8 @@ export default function Home() {
           />
         </div>
 
-        <button className="mt-8 px-10 py-3 rounded-full 
-          bg-lime-400 hover:bg-lime-500 transition text-[#222] font-semibold shadow"
+        <button className="cursor-pointer mt-8 px-10 py-3 rounded-full 
+          bg-lime-color hover:bg-lime-color/90 hover:scale-105 transition text-[#222] font-semibold shadow"
           onClick={() => window.location.href = '/events'}>
           Get Started
         </button>

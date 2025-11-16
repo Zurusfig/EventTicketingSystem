@@ -14,6 +14,8 @@ export default async function userLogin(userEmail: string, userPassword: string)
     console.log("response", response);
 
     if (!response.ok) {
+        const errorBody = await response.text();
+        console.error("login error body:", errorBody);
         throw new Error('Failed to login');
     }
 

@@ -21,7 +21,7 @@ export default function LogInForm() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full border border-border-color rounded px-3 py-2 bg-bg-color text-text-color"
+                    className="w-full border border-border-color rounded px-3 py-2 bg-bg-color text-text-alternate-color"
                     required
                     />
                 </div>
@@ -32,7 +32,7 @@ export default function LogInForm() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full border border-border-color rounded px-3 py-2 bg-bg-color text-text-color"
+                    className="w-full border border-border-color rounded px-3 py-2 bg-bg-color text-text-alternate-color"
                     required
                     />
                 </div>
