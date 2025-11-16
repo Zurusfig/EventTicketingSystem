@@ -62,7 +62,7 @@ export default function RegisterForm() {
             <button
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-full bg-lime-color text-navy-color py-3 font-semibold hover:bg-lime-color/90 disabled:opacity-50"
+                className="cursor-pointer w-full rounded-full bg-lime-color text-navy-color py-3 font-semibold hover:bg-lime-color/90 disabled:opacity-50"
             >
                 {loading ? "Creating account..." : "Sign up"}
             </button>
