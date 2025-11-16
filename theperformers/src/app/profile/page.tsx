@@ -20,7 +20,7 @@ export default async function ProfilePage() {
             <span className="font-primary text-text-color">Profile</span>
         </div>
         <div className="flex flex-col items-center justify-evenly min-w-[50%] min-h-[40vh] bg-lime-color rounded-lg p-4">
-            <div className="text-3xl lg:text-4xl font-bold flex flex-col items-center justify-center">
+            <div className="text-3xl lg:text-4xl font-bold flex flex-col items-center justify-center text-navy-color">
                 {profile.data.name}
             </div>
             <div className="text-lg lg:text-xl flex flex-col items-center justify-center px-4 py-2 gap-2 w-full">
