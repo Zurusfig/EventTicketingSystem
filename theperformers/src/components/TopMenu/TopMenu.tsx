@@ -1,29 +1,36 @@
 "use client";
 import { useState } from "react";
-
+import {getServerSession} from "next-auth";
+import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import TopMenuItem from "./TopMenuItem";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export default function TopMenu() {
+
+  const { data: session } = useSession();
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  console.log(session);
+
   return (
     <nav className="fixed inset-x-0 top-0 z-50 bg-bg-alternate-color text-text-alternate-color border-b border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-bg-alternate-color text-text-alternate-color">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="cursor-pointer font-primary flex-shrink-0 font-black text-4xl">
+          <Link href="/" className="cursor-pointer font-primary flex-shrink-0 font-black text-4xl mx-2">
             TP
           </Link>
 
 
           {/* 2. Desktop Menu Links (hidden on small screens) */}
-          <div className="hidden md:flex justify-between font-primary md:items-center md:space-x-8 w-[80%]">
+          <div className="hidden md:flex justify-between font-primary md:items-center md:space-x-8 w-[80%] mx-2">
             <div className="flex justify-between space-x-8">
               <TopMenuItem text="Events" pageRoute="/events" />
               <TopMenuItem text="Request Tickets" pageRoute="/request-tickets" />
@@ -34,10 +41,20 @@ export default function TopMenu() {
           </div>
 
           {/* 2. Desktop Menu Links */}
-          <div className="font-primary text-text-alternate hidden md:flex md:items-center md:space-x-8">
-            <button className="text-nowrap text-sm md:text-md cursor-pointer rounded-full bg-lime-color text-navy-color px-6 py-2 hover:bg-lime-color/90 hover:scale-105 transition-all duration-300">
-              Log In
-            </button>
+          <div className="font-primary text-text-alternate hidden md:flex md:items-center md:space-x-8 mx-2">
+            {session ? (
+              <Link href="/profile">
+                <button className="text-sm md:text-lg cursor-pointer rounded-full bg-navy-color mx-2 px-6 py-2 hover:scale-105 transition-all duration-300">
+                  <div className="text-nowrap text-gradient-primary font-black text-stroke-navy-color">{session.user?.name}</div>
+                </button>
+              </Link>
+            ) : (
+              <Link href="/api/auth/signin">
+                <button className="text-nowrap text-sm md:text-md cursor-pointer rounded-full bg-lime-color text-navy-color px-6 py-2 hover:bg-lime-color/90 hover:scale-105 transition-all duration-300">
+                  Log In
+                </button>
+              </Link>
+            )}
           </div>
 
           {/* 3. Mobile Menu Button (Hamburger Icon) */}
@@ -90,9 +107,19 @@ export default function TopMenu() {
 
         {/* Mobile Log In Button */}
         <div className="px-4 py-4 flex justify-center">
-          <button className="cursor-pointer rounded-full bg-lime-color text-navy-color px-6 py-2 hover:bg-lime-color/90 hover:scale-105 transition-all duration-300">
-            Log In
-          </button>
+          {session ? (
+              <Link href="/profile">
+              <button className="text-sm md:text-lg cursor-pointer rounded-full bg-navy-color mx-2 px-6 py-2 hover:scale-105 transition-all duration-300">
+                <div className="text-nowrap text-gradient-primary font-black text-stroke-navy-color">{session.user?.name}</div>
+              </button>
+            </Link>
+            ) : (
+              <Link href="/api/auth/signin">
+                <button className="text-nowrap text-sm md:text-md cursor-pointer rounded-full bg-lime-color text-navy-color px-6 py-2 hover:bg-lime-color/90 hover:scale-105 transition-all duration-300">
+                  Log In
+                </button>
+              </Link>
+            )}
         </div>
       </div>
     </nav>
