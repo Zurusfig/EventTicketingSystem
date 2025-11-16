@@ -4,6 +4,7 @@ import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import TopMenuItem from "./TopMenuItem";
+import Link from "next/link";
 
 export default function TopMenu() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -16,9 +17,9 @@ export default function TopMenu() {
     <nav className="fixed inset-x-0 top-0 z-50 bg-bg-alternate-color text-text-alternate-color border-b border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-bg-alternate-color text-text-alternate-color">
         <div className="flex h-16 items-center justify-between">
-          <div className="pointer-events-none font-primary flex-shrink-0 font-black text-4xl">
+          <Link href="/" className="cursor-pointer font-primary flex-shrink-0 font-black text-4xl">
             TP
-          </div>
+          </Link>
 
 
           {/* 2. Desktop Menu Links (hidden on small screens) */}
