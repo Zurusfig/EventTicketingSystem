@@ -59,7 +59,8 @@ export default function Home() {
         </div>
 
         <button className="mt-8 px-10 py-3 rounded-full 
-          bg-lime-400 hover:bg-lime-500 transition text-[#222] font-semibold shadow">
+          bg-lime-400 hover:bg-lime-500 transition text-[#222] font-semibold shadow"
+          onClick={() => window.location.href = '/upcoming_event'}>
           Get Started
         </button>
 
