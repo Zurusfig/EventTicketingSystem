@@ -1,6 +1,7 @@
 import { Calendar, MapPin, User, Ticket } from "lucide-react";
 import ImageSlider from "@/components/ImageDisplay/ImageSilder";
 import getEvent from "@/libs/getEvent";
+import Link from "next/link";
 
 // -------- MOCK FALLBACK DATA --------
 const mockEvent = {
@@ -99,11 +100,11 @@ export default async function EventDetailPage({
       </div>
 
       {/* Request Ticket Button */}
-      <div className="mt-8 flex justify-center">
+      <Link href={`/request-tickets?id=${eventId}`}>
         <button className="cursor-pointer bg-lime-color hover:bg-lime-color/90 hover:scale-105 transition text-black font-semibold px-10 py-3 rounded-full shadow-md">
           Request Ticket
         </button>
-      </div>
+      </Link>
     </div>
   );
 }
