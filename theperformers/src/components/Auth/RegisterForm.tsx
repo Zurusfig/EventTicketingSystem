@@ -17,7 +17,7 @@ export default function RegisterForm() {
             <div>
                 <div className="block text-sm mb-1">Name</div>
                 <input
-                className="w-full border border-border-color rounded px-3 py-2 bg-bg-color text-text-color"
+                className="w-full border border-border-color rounded px-3 py-2 bg-bg-color text-text-alternate-color"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -27,7 +27,7 @@ export default function RegisterForm() {
             <div>
                 <div className="block text-sm mb-1">Telephone Number</div>
                 <input
-                className="w-full border border-border-color rounded px-3 py-2 bg-bg-color text-text-color"
+                className="w-full border border-border-color rounded px-3 py-2 bg-bg-color text-text-alternate-color"
                 type="tel"
                 value={tel}
                 onChange={(e) => setTel(e.target.value)}
@@ -41,7 +41,7 @@ export default function RegisterForm() {
                 <div className="block text-sm mb-1">Email</div>
                 <input
                 type="email"
-                className="w-full border border-border-color rounded px-3 py-2 bg-bg-color text-text-color"
+                className="w-full border border-border-color rounded px-3 py-2 bg-bg-color text-text-alternate-color"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -52,7 +52,7 @@ export default function RegisterForm() {
                 <div className="block text-sm mb-1">Password</div>
                 <input
                 type="password"
-                className="w-full border border-border-color rounded px-3 py-2 bg-bg-color text-text-color"
+                className="w-full border border-border-color rounded px-3 py-2 bg-bg-color text-text-alternate-color"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required

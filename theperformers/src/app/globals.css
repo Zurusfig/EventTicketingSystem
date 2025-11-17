@@ -9,7 +9,7 @@
 
 :root {
   /* Semantic Colors */
-  --sys-color-bg: #ffffff; /* White */
+  --sys-color-bg: linear-gradient(163deg,rgba(255, 255, 255, 1) 0%, rgba(191, 191, 191, 1) 50%, rgba(255, 255, 255, 1) 100%);
   --sys-color-text: #1d293d; /* Navy Main */
   --sys-color-bg-alternate: #1d293d; /* Off-white */
   --sys-color-text-alternate: #f1f5f9; /* A darker gray-blue */
@@ -76,7 +76,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Semantic Colors */
-    --sys-color-bg: #1d293d; /* Navy Main */
+    --sys-color-bg: linear-gradient(66deg,rgba(29, 41, 61, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(29, 41, 61, 1) 100%); /* Navy Main */
     --sys-color-text: #f1f5f9; /* Off-white */
     --sys-color-bg-alternate: #f1f5f9; /* Off-white */
     --sys-color-text-alternate: #1d293d; /* A darker gray-blue */
