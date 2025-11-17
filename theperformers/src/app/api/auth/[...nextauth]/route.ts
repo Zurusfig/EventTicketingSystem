@@ -23,15 +23,8 @@ export const authOptions: AuthOptions = {
         if (!credentials) return null;
 
         const user = await userLogin(credentials.email, credentials.password);
-        // const user = {
-        //   id: "1",
-        //   name: "John Doe",
-        //   email: "john.doe@example.com",
-        //   password: "password",
-        // };
-        // console.log("user", user);
 
-        if (user.data) {
+        if (user) {
           // Any object returned will be saved in `user` property of the JWT
           return user;
         } else {
