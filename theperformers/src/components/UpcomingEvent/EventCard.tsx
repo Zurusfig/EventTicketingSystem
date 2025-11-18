@@ -44,17 +44,17 @@ export default function EventCard({
           alt={title}
           width={280}
           height={150}
-          className="w-full h-[50%] lg:h-[60%] xl:h-[70%] object-cover rounded-md mb-4"
+          className="w-full h-[60%] object-cover rounded-md mb-4"
         />
 
         {/* Title */}
-        <h2 className="text-lg font-bold text-center mb-2 text-navy-color">{title}</h2>
+        <h2 className="text-lg font-bold text-center mb-2 text-navy-color h-[10%]">{title}</h2>
 
         {/* Details */}
         <div className="text-sm text-gray-800 space-y-1">
           <div className="flex items-center gap-2">
             <Calendar size={16} />
-            <span>{date}</span>
+            <span>{new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
           </div>
 
           <div className="flex items-center gap-2">

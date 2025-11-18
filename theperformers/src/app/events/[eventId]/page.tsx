@@ -53,7 +53,7 @@ export default async function EventDetailPage({
       <div className="bg-bg-alternate-color p-6 rounded-xl shadow-lg flex flex-col lg:flex-row gap-6">
 
         {/* Poster */}
-        <div className="flex-1 min-w-[300px]">
+        <div className="flex-1 h-[60%] lg:h-full">
         <ImageSlider
           images={
             event.posterPicture
@@ -70,11 +70,11 @@ export default async function EventDetailPage({
       </div>
 
         {/* Event Info */}
-        <div className="flex-1 space-y-3 text-text-alternate-color">
+        <div className="min-h-[300px] flex-1 space-y-3 text-text-alternate-color text-lg md:text-xl lg:text-2xl">
 
           <div className="flex items-center gap-2">
             <Calendar size={18} />
-            <span>{new Date(event.eventDate).toLocaleDateString()}</span>
+            <span>{new Date(event.eventDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -93,17 +93,19 @@ export default async function EventDetailPage({
           </div>
 
           {/* Description */}
-          <p className="text-sm text-text-alternate-color mt-4 leading-relaxed">
+          <p className="text-text-alternate-color mt-4 leading-relaxed">
             {event.description}
           </p>
         </div>
       </div>
 
       {/* Request Ticket Button */}
-      <Link href={`/request-tickets?id=${eventId}`}>
-        <button className="cursor-pointer bg-lime-color hover:bg-lime-color/90 hover:scale-105 transition text-black font-semibold px-10 py-3 rounded-full shadow-md">
-          Request Ticket
-        </button>
+      <Link href={`/request-tickets?id=${eventId}&name=${event.name}`}>
+        <div className="flex justify-center items-center m-8">
+          <button className="cursor-pointer bg-lime-color hover:bg-lime-color/90 hover:scale-105 transition text-navy-color font-semibold px-10 py-3 rounded-full shadow-md text-lg md:text-xl lg:text-2xl xl:text-3xl transition-all duration-100">
+            Request Ticket
+          </button>
+        </div>
       </Link>
     </div>
   );

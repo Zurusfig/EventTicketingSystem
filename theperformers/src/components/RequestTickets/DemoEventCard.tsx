@@ -22,15 +22,14 @@ export default function DemoEventCard({
         return (
             <div
                 className="
-            bg-bg-alternate-color/75
+            bg-bg-alternate-color
             rounded-2xl shadow-md border border-gray-200
             p-4 flex flex-col gap-3
-            h-[420px]
-            transition hover:scale-[1.03] hover:shadow-lg cursor-pointer
+            h-[500px]
             w-full max-w-[360px]
             "
             >
-                <div className="w-full h-[50%] lg:h-[60%] xl:h-[70%] bg-surface-color rounded-md mb-4 animate-pulse" />
+                <div className="w-full h-[60%] bg-surface-color rounded-md mb-4 animate-pulse" />
                 <h2 className="flex items-center justify-center text-lg font-bold text-center m-2 text-text-alternate-color/60 animate-pulse">Fetching event information...</h2>
             </div>
         )
@@ -45,9 +44,9 @@ export default function DemoEventCard({
             bg-bg-alternate-color
             rounded-2xl shadow-md border border-gray-200
             p-4 flex flex-col gap-3
-            h-[420px]
+            h-[500px]
             transition hover:scale-[1.03] hover:shadow-lg cursor-pointer
-            w-full max-w-[360px]
+            w-full
             "
             >
                 {/* Poster / Placeholder */}
@@ -57,17 +56,17 @@ export default function DemoEventCard({
                         alt={title}
                         width={280}
                         height={150}
-                        className="w-full h-[50%] lg:h-[60%] xl:h-[70%] object-cover rounded-md mb-4"
+                        className="w-full h-[60%] object-cover rounded-md mb-4"
                     />)}
                 {!posterPicture && (
-                    <div className="w-full h-[50%] lg:h-[60%] xl:h-[70%] bg-surface-color rounded-md mb-4" />
+                    <div className="w-full h-[60%] bg-surface-color rounded-md mb-4" />
                 )}
 
                 {/* Title */}
-                <h2 className="text-lg font-bold text-center mb-2 text-white">{title}</h2>
+                <h2 className="text-lg font-bold text-center mb-2 text-text-alternate-color h-[10%]">{title}</h2>
 
                 {/* Details */}
-                <div className="text-sm text-white space-y-1">
+                <div className="text-sm text-text-alternate-color space-y-1">
                     <div className="flex items-center gap-2">
                         <Calendar size={16} />
                         <span>{date}</span>
