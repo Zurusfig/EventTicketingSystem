@@ -7,7 +7,7 @@ export default function CreateEventPage() {
         bg-bg-color"
     >
      <h1 className="text-3xl text-text-color font-bold mb-6 text-center sm:text-left">
-        Edit Event
+        Create New Event
       </h1>
 
       <CreateEventForm />
