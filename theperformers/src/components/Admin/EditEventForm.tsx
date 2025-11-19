@@ -158,17 +158,16 @@ export default function EditEventForm({ eventId }: { eventId: string }) {
   if (loading) return <p className="p-10 text-center">Loading event…</p>;
 
   return (
-    <div className="w-full bg-purple-300 p-6 sm:p-10 rounded-xl shadow-lg border">
+    <div className="w-full bg-lime-color p-6 sm:p-10 rounded-xl shadow-lg border text-navy-color">
 
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* LEFT SIDE */}
         <div className="md:col-span-2 space-y-4">
 
           <div>
             <label className="font-semibold">Name *</label>
             <input
-              className="w-full mt-1 px-4 py-2 rounded-md border"
+              className="w-full mt-1 px-4 py-2 rounded-md bg-white text-navy-color"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
@@ -186,7 +185,7 @@ export default function EditEventForm({ eventId }: { eventId: string }) {
           <div>
             <label className="font-semibold">Venue *</label>
             <input
-              className="w-full mt-1 px-4 py-2 rounded-md border"
+              className="w-full mt-1 px-4 py-2 rounded-md border bg-white text-navy-color"
               value={venue}
               onChange={(e) => setVenue(e.target.value)}
             />
@@ -195,7 +194,7 @@ export default function EditEventForm({ eventId }: { eventId: string }) {
           <div>
             <label className="font-semibold">Organizer *</label>
             <input
-              className="w-full mt-1 px-4 py-2 rounded-md border"
+              className="w-full mt-1 px-4 py-2 rounded-md border bg-white text-navy-color"
               value={organizer}
               onChange={(e) => setOrganizer(e.target.value)}
             />
@@ -205,7 +204,7 @@ export default function EditEventForm({ eventId }: { eventId: string }) {
             <label className="font-semibold">Available Tickets</label>
             <input
               type="number"
-              className="w-full mt-1 px-4 py-2 rounded-md border"
+              className="w-full mt-1 px-4 py-2 rounded-md border bg-white text-navy-color"
               value={availableTicket}
               onChange={(e) =>
                 setAvailableTicket(e.target.value === "" ? "" : Number(e.target.value))
@@ -216,7 +215,7 @@ export default function EditEventForm({ eventId }: { eventId: string }) {
           <div>
             <label className="font-semibold">Description</label>
             <textarea
-              className="w-full mt-1 px-4 py-2 rounded-md border h-[180px]"
+              className="w-full mt-1 px-4 py-2 rounded-md border h-[180px] bg-white text-navy-color"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
@@ -227,9 +226,9 @@ export default function EditEventForm({ eventId }: { eventId: string }) {
         {/* RIGHT SIDE IMAGE */}
         <div className="flex flex-col items-center">
 
-          <div className="relative w-full h-[180px] bg-white rounded-lg border flex items-center justify-center overflow-hidden">
+          <div className="relative w-full min-h-[250px] max-h-[300px] bg-white rounded-lg border flex items-center justify-center overflow-hidden bg-white text-navy-color">
             {!imageUrl ? (
-              <p className="text-gray-500 text-sm">No image uploaded</p>
+              <p className="text-navy-color text-sm">No image uploaded</p>
             ) : (
               <img src={imageUrl} className="w-full h-full object-cover" />
             )}
@@ -258,7 +257,7 @@ export default function EditEventForm({ eventId }: { eventId: string }) {
                 setImageUrl(null);
                 setImageFile(null);
               }}
-              className="mt-3 px-4 py-2 bg-red-400 text-white rounded-md hover:bg-red-500"
+              className="cursor-pointer mt-3 px-4 py-2 bg-red-400 text-white rounded-full hover:bg-red-500 hover:scale-105 transition"
             >
               Delete Image
             </button>
@@ -271,14 +270,14 @@ export default function EditEventForm({ eventId }: { eventId: string }) {
         <button
           onClick={handleSubmit}
           disabled={uploading}
-          className="px-6 py-2 bg-blue-500 text-white rounded-lg font-semibold"
+          className="cursor-pointer px-6 py-2 bg-navy-color/80 hover:bg-navy-color text-white rounded-full font-semibold hover:scale-105 transition"
         >
           Save Changes
         </button>
 
         <button
           onClick={() => (window.location.href = "/admin")}
-          className="px-6 py-2 bg-red-400 text-white rounded-lg font-semibold"
+          className="cursor-pointer px-6 py-2 bg-red-400 text-white rounded-full font-semibold hover:bg-red-500 hover:scale-105 transition"
         >
           Cancel
         </button>
