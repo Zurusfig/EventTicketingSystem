@@ -5,6 +5,7 @@ import Link from "next/link";
 import MailIcon from '@mui/icons-material/Mail';
 import PersonIcon from '@mui/icons-material/Person';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
+import ScrollDisabler from "@/components/ScrollDisabler";
 
 export default async function ProfilePage() {
     const session = await getServerSession(authOptions);
@@ -15,11 +16,12 @@ export default async function ProfilePage() {
     // console.log(profile);
     
     return (
-    <div className="font-primary flex flex-col items-center justify-center min-h-screen p-8 gap-16 sm:p-20">
+    <ScrollDisabler>
+    <div className="font-primary flex flex-col items-center min-h-screen px-4 gap-8 py-16">
         <div className="text-5xl lg:text-6xl font-bold text-center text-gradient-primary">
             <span className="font-primary text-text-color">Profile</span>
         </div>
-        <div className="flex flex-col items-center justify-evenly min-w-[50%] min-h-[40vh] bg-lime-color rounded-lg p-4">
+        <div className="flex flex-col items-center justify-center min-w-[50%] min-h-[40vh] bg-lime-color rounded-lg p-4">
             <div className="text-3xl lg:text-4xl font-bold flex flex-col items-center justify-center text-navy-color">
                 {profile.data.name}
             </div>
@@ -46,5 +48,6 @@ export default async function ProfilePage() {
         </Link>
 
     </div>
+    </ScrollDisabler>
     );
 }
