@@ -105,7 +105,7 @@ export default function TopMenu() {
         </div>
 
         {/* Mobile Log In Button */}
-        <div className="px-4 py-4 flex justify-center">
+        <div className="px-4 py-4 flex justify-between">
           {session ? (
               <Link href="/profile">
               <button className="text-sm md:text-lg cursor-pointer rounded-full bg-navy-color mx-2 px-6 py-2 hover:scale-105 transition-all duration-300">
@@ -119,6 +119,9 @@ export default function TopMenu() {
                 </button>
               </Link>
             )}
+            <div className="flex justify-center items-center">
+              <ThemeSwitch />
+            </div>
         </div>
       </div>
     </nav>
