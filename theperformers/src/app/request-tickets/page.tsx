@@ -42,7 +42,7 @@ export default function RequestPage() {
                 <div className="w-full sm:w-1/3 flex-shrink-0">
                     {eventInfo && <DemoEventCard eventData={eventInfo.eventData} />}
                     {!eventInfo && <DemoEventCard eventData={null} />}
-                </div>x
+                </div>
                 <div className="w-full sm:w-2/3 flex-shrink-0">
                     <RequestCard eventName={eventName || eventInfo?.eventData?.title || ''} 
                     eventId={eventId || eventInfo?.eventData?.id || ''} />

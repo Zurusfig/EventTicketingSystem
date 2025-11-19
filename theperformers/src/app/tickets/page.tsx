@@ -32,7 +32,7 @@ export default function TicketsPage(){
         try {
             const respone = await getUserTickets(session?.user?.token || '');
             setTickets(respone.data);
-            // console.log("Tickets:", respone.data);
+            console.log("Tickets:", respone.data);
         } catch (error: any) {
             setError(error.message);
         } finally {
