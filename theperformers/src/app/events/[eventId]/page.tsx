@@ -62,7 +62,7 @@ export default async function EventDetailPage({
           </div>
 
           {/* Description */}
-          <p className="text-text-alternate-color mt-4 leading-relaxed">
+          <p className="text-text-alternate-color mt-4 leading-relaxed text-sm sm:text-base">
             {event.description}
           </p>
         </div>
