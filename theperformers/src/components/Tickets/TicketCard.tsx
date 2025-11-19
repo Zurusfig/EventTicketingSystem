@@ -28,6 +28,15 @@ interface Event {
 }
 
 export default function TicketCard({ ticket,color }: { ticket: Ticket, color: string }) {
+
+    if (!ticket || !ticket.event || !ticket.event._id) {
+        return (
+            <div className={`${color} rounded-xl p-6 shadow-md w-full`}>
+                <div className="text-red-600">Invalid ticket data</div>
+            </div>
+        );
+    }
+    
     return (
         <div className={`${color} rounded-xl p-6 shadow-md w-full`}>
                 <div className="flex flex-col sm:flex-row gap-2 sm:justify-between justify-center items-center text-bold">           
@@ -62,12 +71,12 @@ export default function TicketCard({ ticket,color }: { ticket: Ticket, color: st
                                 {/* <Calendar size={16} /> */}
                                 Date Requested: <span className="font-bold">{new Date(ticket.createdAt).toLocaleDateString()}</span>
                             </div>
-                            { (ticket.user.name) ? <div className="text-sm text-navy-color flex flex-row gap-2 text-center sm:text-right">
-                                <UserIcon size={16} />
-                                Requested by: <span className="font-bold">{ticket.user.name}</span>
-                            </div> : <div className="text-sm text-navy-color flex flex-row gap-2 text-center sm:text-right">
-                                
-                            </div>}
+                            {ticket.user?.name && (
+                                <div className="text-sm text-navy-color flex flex-row gap-2 text-center sm:text-right">
+                                    <UserIcon size={16} />
+                                    Requested by: <span className="font-bold">{ticket.user.name}</span>
+                                </div>
+                            )}
                         </div>
                         <Link href={`/edit-ticket?ticketId=${ticket._id}`}>
                             <button className="bg-red-400 text-white px-6 py-2 rounded-full hover:scale-105 hover:bg-red-500 transition-all duration-300 cursor-pointer">
