@@ -33,9 +33,7 @@ export default async function EventDetailPage({
                 ? event.posterPicture.split(",") // multiple images
                 : [event.posterPicture] // single image
               : [
-                  "/images/slide1.jpg",
-                  "/images/slide2.jpg",
-                  "/images/slide3.jpg",
+                  "/images/default.jpg",
                 ] // fallback mock images
           }
         />

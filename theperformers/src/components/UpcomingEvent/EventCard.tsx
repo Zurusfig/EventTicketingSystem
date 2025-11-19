@@ -24,7 +24,7 @@ export default function EventCard({
   const imageSrc =
     posterPicture && posterPicture.trim() !== ""
       ? posterPicture
-      : "/images/slide1.jpg";
+      : "/images/default.jpg";
 
   return (
     <Link href={`/events/${id}`}>

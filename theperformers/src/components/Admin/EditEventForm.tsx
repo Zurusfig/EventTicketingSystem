@@ -160,7 +160,6 @@ export default function EditEventForm({ eventId }: { eventId: string }) {
   return (
     <div className="w-full bg-purple-300 p-6 sm:p-10 rounded-xl shadow-lg border">
 
-      <h1 className="text-2xl font-bold mb-6">Edit Event</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* LEFT SIDE */}
@@ -278,7 +277,7 @@ export default function EditEventForm({ eventId }: { eventId: string }) {
         </button>
 
         <button
-          onClick={() => (window.location.href = "/admin/manage-events")}
+          onClick={() => (window.location.href = "/admin")}
           className="px-6 py-2 bg-red-400 text-white rounded-lg font-semibold"
         >
           Cancel

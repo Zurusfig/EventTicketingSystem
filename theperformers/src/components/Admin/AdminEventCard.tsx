@@ -37,6 +37,7 @@ export default function AdminEventCard({
         rounded-2xl shadow-md border border-gray-200
         p-4 flex flex-col gap-3
         h-[420px]
+        transition hover:scale-[1.03] hover:shadow-lg cursor-pointer
         w-full max-w-[360px]
       `}
     >
