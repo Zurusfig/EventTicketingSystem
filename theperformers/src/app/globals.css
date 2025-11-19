@@ -8,7 +8,6 @@
 }
 
 :root {
-  /* Semantic Colors */
   --sys-color-bg: linear-gradient(163deg,rgba(255, 255, 255, 1) 0%, rgba(191, 191, 191, 1) 50%, rgba(255, 255, 255, 1) 100%);
   --sys-color-text: #1d293d; /* Navy Main */
   --sys-color-bg-alternate: #1d293d; /* Off-white */
@@ -17,7 +16,6 @@
   --sys-color-surface: #f8fafc; /* For cards (a very light gray) */
   --sys-color-border: #e5e7eb; /* Light gray border */
 
-  /* Brand Accent Colors */
   --sys-accent-lime: #c7e651;
   --sys-accent-blue: #70B3FF;
   --sys-accent-purple: #CD99F9;
@@ -26,6 +24,35 @@
   
   --sys-gradient-primary: linear-gradient(90deg,rgba(199, 230, 81, 1) 0%, rgba(194, 122, 255, 1) 50%, rgba(255, 223, 32, 1) 100%);
   --sys-gradient-secondary: linear-gradient(90deg,rgba(194, 122, 255, 1) 0%, rgba(255, 223, 32, 1) 50%, rgba(29, 41, 61, 1) 100%);
+}
+
+.dark {
+
+  --sys-color-bg: linear-gradient(66deg,rgba(29, 41, 61, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(29, 41, 61, 1) 100%);
+  --sys-color-text: #f1f5f9; /* Off-white */
+  --sys-color-bg-alternate: #f1f5f9; /* Off-white */
+  --sys-color-text-alternate: #1d293d; /* A darker gray-blue */
+  --sys-color-text-muted: #94a3b8; /* Lighter gray-blue */
+  --sys-color-surface: #2c3a54; /* A slightly lighter Navy for cards */
+  --sys-color-border: #475569; /* A mid-gray-blue border */
+
+  --sys-accent-lime: #c7e651;
+  --sys-accent-blue: #70B3FF;
+  --sys-accent-purple: #CD99F9;
+  --sys-accent-yellow: #ffdf20;
+  --sys-accent-navy: #1d293d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --sys-color-bg: linear-gradient(66deg,rgba(29, 41, 61, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(29, 41, 61, 1) 100%);
+    --sys-color-text: #f1f5f9;
+    --sys-color-bg-alternate: #f1f5f9;
+    --sys-color-text-alternate: #1d293d;
+    --sys-color-text-muted: #94a3b8;
+    --sys-color-surface: #2c3a54;
+    --sys-color-border: #475569;
+  }
 }
 
 @layer utilities {
@@ -50,8 +77,6 @@
     background-clip: text;
     color: transparent;
   }
-
-  
 }
 
 @theme inline {
@@ -71,29 +96,6 @@
   --color-gradient-secondary: var(--sys-gradient-secondary);
   --font-secondary: var(--font-secondary);
   --font-primary: var(--font-primary);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Semantic Colors */
-    --sys-color-bg: linear-gradient(66deg,rgba(29, 41, 61, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(29, 41, 61, 1) 100%); /* Navy Main */
-    --sys-color-text: #f1f5f9; /* Off-white */
-    --sys-color-bg-alternate: #f1f5f9; /* Off-white */
-    --sys-color-text-alternate: #1d293d; /* A darker gray-blue */
-    --sys-color-text-muted: #94a3b8; /* Lighter gray-blue */
-    --sys-color-surface: #2c3a54; /* A slightly lighter Navy for cards */
-    --sys-color-border: #475569; /* A mid-gray-blue border */
-
-    /* Brand Accent Colors (they are bright, so they work well!) */
-    --sys-accent-lime: #c7e651;
-    --sys-accent-blue: #70B3FF;
-    --sys-accent-purple: #CD99F9;
-    --sys-accent-yellow: #ffdf20;
-    --sys-accent-navy: #1d293d; /* This one might be hard to see */
-
-    --sys-gradient-primary: linear-gradient(90deg,rgba(199, 230, 81, 1) 0%, rgba(194, 122, 255, 1) 50%, rgba(255, 223, 32, 1) 100%);
-    --sys-gradient-secondary: linear-gradient(90deg,rgba(194, 122, 255, 1) 0%, rgba(255, 223, 32, 1) 50%, rgba(29, 41, 61, 1) 100%);
-  }
 }
 
 body {
