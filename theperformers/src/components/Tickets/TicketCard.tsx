@@ -1,5 +1,6 @@
 import { Calendar, MapPin, Ticket } from "lucide-react";
 import Link from "next/link";
+import Divider from '@mui/material/Divider';
 
 export interface Ticket {
     _id: string;
@@ -40,7 +41,10 @@ export default function TicketCard({ ticket,color }: { ticket: Ticket, color: st
                         </div>
                     </div>
                     <div className="flex flex-col gap-4 items-center sm:items-end mt-4 sm:mt-0">
-                        <div className="flex flex-col gap-2 items-center sm:items-end">
+                        <div className="w-full sm:hidden">
+                            <Divider orientation="horizontal" variant="middle" flexItem />
+                        </div>
+                        <div className="flex flex-col gap-2 items-center sm:items-end w-full">
                             <div className="text-sm text-navy-color flex flex-row gap-2 text-center sm:text-right text-nowrap">
                                 <Ticket size={16} />
                                 {ticket.ticketAmount} / 5 tickets requested
@@ -50,7 +54,7 @@ export default function TicketCard({ ticket,color }: { ticket: Ticket, color: st
                                 Date Requested: {new Date(ticket.createdAt).toLocaleDateString()}
                             </div>
                         </div>
-                        <Link href={``}>
+                        <Link href={`/edit-ticket?ticketId=${ticket._id}`}>
                             <button className="bg-red-400 text-white px-6 py-2 rounded-full hover:scale-105 hover:bg-red-500 transition-all duration-300 cursor-pointer">
                                 <p className="text-sm text-center sm:text-left">Edit / Remove </p>
                             </button>
