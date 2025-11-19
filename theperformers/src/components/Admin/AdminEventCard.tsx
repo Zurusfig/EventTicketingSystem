@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Calendar, MapPin } from "lucide-react";
 
 export type AdminEventCardProps = {
@@ -7,6 +8,7 @@ export type AdminEventCardProps = {
   title: string;
   date: string;
   location: string;
+  posterPicture?: string;
   color: string;
   onEdit?: (id: string) => void;
   onDelete?: (id: string) => void;
@@ -17,31 +19,50 @@ export default function AdminEventCard({
   title,
   date,
   location,
+  posterPicture,
   color,
   onEdit,
   onDelete
 }: AdminEventCardProps) {
+
+  const imageSrc =
+    posterPicture && posterPicture.trim() !== ""
+      ? posterPicture
+      : "/images/slide1.jpg";
+
   return (
     <div
       className={`
         ${color}
-        rounded-xl shadow-md border border-gray-200
-        p-4 flex flex-col
-        h-[350px]
-        w-[280px]
+        rounded-2xl shadow-md border border-gray-200
+        p-4 flex flex-col gap-3
+        h-[420px]
+        w-full max-w-[360px]
       `}
     >
-      {/* Poster Placeholder */}
-      <div className="w-full h-[150px] bg-white rounded-md mb-4" />
+      {/* Poster */}
+      <Image
+        src={imageSrc}
+        alt={title}
+        width={280}
+        height={150}
+        className="w-full h-[60%] object-cover rounded-md mb-4"
+      />
 
       {/* Title */}
-      <h2 className="text-lg font-bold text-center mb-2">{title}</h2>
+      <h2 className="text-lg font-bold text-center mb-2 text-navy-color">{title}</h2>
 
       {/* Details */}
       <div className="text-sm text-gray-800 space-y-1">
         <div className="flex items-center gap-2">
           <Calendar size={16} />
-          <span>{date}</span>
+          <span>
+            {new Date(date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric"
+            })}
+          </span>
         </div>
 
         <div className="flex items-center gap-2">
