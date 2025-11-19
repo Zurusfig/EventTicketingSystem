@@ -36,6 +36,8 @@ export default function TicketCard({ ticket,color }: { ticket: Ticket, color: st
             </div>
         );
     }
+
+    console.log("Ticket user name", ticket.user?.name);
     
     return (
         <div className={`${color} rounded-xl p-6 shadow-md w-full`}>
@@ -67,11 +69,12 @@ export default function TicketCard({ ticket,color }: { ticket: Ticket, color: st
                                 <Ticket size={16} />
                                 <span className="font-bold">{ticket.ticketAmount} / 5 tickets requested</span>
                             </div>
-                            <div className="text-sm text-navy-color flex flex-row gap-2 text-center sm:text-right">
+                            <div className="text-sm text-navy-color flex flex-row gap-2 text-center sm:text-right whitespace-nowrap">
                                 {/* <Calendar size={16} /> */}
-                                Date Requested: <span className="font-bold">{new Date(ticket.createdAt).toLocaleDateString()}</span>
+                                Date Requested:
+                                <span className="font-bold">{new Date(ticket.createdAt).toLocaleDateString()}</span>
                             </div>
-                            {ticket.user?.name && (
+                            {ticket.user?.name && ticket.user.name !== undefined && (
                                 <div className="text-sm text-navy-color flex flex-row gap-2 text-center sm:text-right">
                                     <UserIcon size={16} />
                                     Requested by: <span className="font-bold">{ticket.user.name}</span>
