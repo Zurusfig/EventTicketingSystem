@@ -31,10 +31,9 @@ export default function TopMenu() {
           <div className="hidden md:flex justify-between font-primary md:items-center md:space-x-8 w-[80%] mx-2">
             <div className="flex justify-between space-x-8">
               <TopMenuItem text="Events" pageRoute="/events" />
-              <TopMenuItem text="Request Tickets" pageRoute="/request-tickets" />
             </div>
             <div>
-              <TopMenuItem text="My Tickets" pageRoute="/my-tickets" />
+              <TopMenuItem text="My Tickets" pageRoute="/tickets" />
             </div>
           </div>
 
@@ -95,11 +94,11 @@ export default function TopMenu() {
           <div className="block w-full text-left">
             <TopMenuItem text="Events" pageRoute="/events" />
           </div>
-          <div className="block w-full text-left">
+          {/* <div className="block w-full text-left">
             <TopMenuItem text="Request Tickets" pageRoute="/request-tickets" />
-          </div>
+          </div> */}
           <div className="block w-full text-left">
-            <TopMenuItem text="My Tickets" pageRoute="/my-tickets" />
+            <TopMenuItem text="My Tickets" pageRoute="/tickets" />
           </div>
         </div>
 
