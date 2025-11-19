@@ -30,37 +30,15 @@ export default function TicketsPage(){
         setIsLoading(true);
         setError(null);
         try {
-            const response = await getUserTickets(session?.user?.token || '');
-            
-            if (response && response.data) {
-                // Filter out any tickets with null user or event (defensive programming)
-                const validTickets = response.data.filter((ticket: Ticket) => 
-                    ticket && ticket.event && ticket.event._id && ticket.user && ticket.user._id
-                );
-                
-                setTickets(validTickets);
-                console.log("Valid tickets:", validTickets);
-                
-                // Show warning if some tickets were filtered out
-                if (validTickets.length < response.data.length) {
-                    console.warn(`Filtered out ${response.data.length - validTickets.length} invalid tickets`);
-                }
-            } else if (response && !response.success) {
-                // Backend returned error but we handled it gracefully
-                setTickets([]);
-                setError(response.message || "No tickets available");
-            } else {
-                setTickets([]);
-            }
+            const respone = await getUserTickets(session?.user?.token || '');
+            setTickets(respone.data);
+            console.log("Tickets:", respone.data);
         } catch (error: any) {
-            console.error("Fetch tickets error:", error);
-            setError(error.message || "Failed to fetch tickets. Please try again.");
-            setTickets([]);
+            setError(error.message);
         } finally {
             setIsLoading(false);
         }
     }
-
 
     return (
         <div className="px-10 py-10 min-h-screen w-full min-h-screen">

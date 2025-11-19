@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Calendar, MapPin, User } from "lucide-react";
+import { Calendar, MapPin, Ticket, User } from "lucide-react";
 import Image from "next/image";
 
 export type DemoEventCardProps = {
@@ -11,7 +11,9 @@ export type DemoEventCardProps = {
         date: string;
         venue: string;
         organizer: string;
-        posterPicture?: string;
+        posterPicture: string;
+        description: string;
+        availableTicket: number;
     } | null;
 };
 
@@ -36,7 +38,13 @@ export default function DemoEventCard({
         )
     }
 
-    const { id, title, date, venue, organizer, posterPicture } = eventData;
+    console.log("Event Data:", eventData);
+
+    const { id, title, date, venue, organizer, posterPicture, description, availableTicket } = eventData;
+
+    const imageSrc = posterPicture && posterPicture.trim() !== ""
+        ? posterPicture
+        : "/images/default.jpg";
 
     return (
         <Link href={`/events/${id}`}>
@@ -51,17 +59,13 @@ export default function DemoEventCard({
             "
             >
                 {/* Poster / Placeholder */}
-                {posterPicture && (
-                    <Image
-                        src={posterPicture}
-                        alt={title}
-                        width={280}
-                        height={150}
-                        className="w-full h-[60%] object-cover rounded-md mb-4"
-                    />)}
-                {!posterPicture && (
-                    <div className="w-full h-[60%] bg-surface-color rounded-md mb-4" />
-                )}
+                <Image
+                    src={imageSrc}
+                    alt={title}
+                    width={280}
+                    height={150}
+                    className="w-full h-[60%] object-cover rounded-md mb-4"
+                />
 
                 {/* Title */}
                 <h2 className="text-lg font-bold text-center mb-2 text-text-alternate-color h-[10%]">{title}</h2>
