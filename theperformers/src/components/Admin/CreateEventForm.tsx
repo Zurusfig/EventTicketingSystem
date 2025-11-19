@@ -75,9 +75,6 @@ export default function CreateEventForm() {
       return alert("Please fill all required fields");
     }
 
-    if (!imageUrl) {
-      return alert("Please upload an image first");
-    }
 
     const body = {
       name,
@@ -111,7 +108,7 @@ export default function CreateEventForm() {
       }
 
       alert("Event created successfully!");
-      window.location.href = "/admin/manage-events";
+      window.location.href = "/admin";
     } catch (err) {
       alert("Server error");
     }
