@@ -24,7 +24,7 @@ export default function RegisterPage() {
     }
 
     return (
-        <div className="min-h-screen fixed inset-0 overflow-hidden">
+        <div className="min-h-screen fixed inset-0">
         <AuthCard title="Sign Up">
       <RegisterForm />
       <div className="text-sm text-center text-text-alternate-color mt-4">
