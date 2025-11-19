@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import type { DemoEventCardProps } from "@/components/RequestTickets/DemoEventCard";
 import RequestCard from "@/components/RequestTickets/RequestCard";
 
+
 export default function RequestPage() {
     const searchParams = useSearchParams();
     const eventId = searchParams.get('id');
@@ -42,7 +43,8 @@ export default function RequestPage() {
                     {!eventInfo && <DemoEventCard eventData={null} />}
                 </div>
                 <div className="w-full sm:w-2/3 flex-shrink-0">
-                    <RequestCard eventName={eventName || eventInfo?.eventData?.title || ''} />
+                    <RequestCard eventName={eventName || eventInfo?.eventData?.title || ''} 
+                    eventId={eventId || eventInfo?.eventData?.id || ''} />
                 </div>
             </div>
         </div>
