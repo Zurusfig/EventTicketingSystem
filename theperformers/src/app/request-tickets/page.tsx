@@ -17,6 +17,7 @@ export default function RequestPage() {
         const fetchEvent = async () => {
             // console.log(eventId);
             const event = await getEvent(eventId as string);
+            console.log("Event:", event);
             if (!event.data) {
                 setEventInfo(null);
                 return;
@@ -28,6 +29,9 @@ export default function RequestPage() {
                     date: new Date(event.data.eventDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
                     venue: event.data.venue,
                     organizer: event.data.organizer,
+                    posterPicture: event.data.posterPicture,
+                    description: event.data.description,
+                    availableTicket: event.data.availableTicket,
                 }
             });
         };
