@@ -128,7 +128,7 @@ export default function EditRequestCard({ ticketId }: { ticketId: string | null 
             const ticketRequest = await deleteTicketRequest(ticketId, session.user.token);
             console.log("Ticket Request deleted:", ticketRequest);
             console.log("Ticket Request deleted status:", ticketRequest.status);
-            if (ticketRequest.status == 200) {
+            if (ticketRequest.success) {
                 setSuccess(true);
                 router.push('/tickets');
             } else {
