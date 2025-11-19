@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import {getServerSession} from "next-auth";
-import {authOptions} from "@/app/api/auth/[...nextauth]/route";
+import {authOptions} from "@/app/api/auth/authOptions";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import TopMenuItem from "./TopMenuItem";

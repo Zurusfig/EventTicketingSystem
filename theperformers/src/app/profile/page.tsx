@@ -1,6 +1,6 @@
 import getUserProfile from "@/libs/getUserProfile";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/auth/authOptions";
 import Link from "next/link";
 import MailIcon from '@mui/icons-material/Mail';
 import PersonIcon from '@mui/icons-material/Person';

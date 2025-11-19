@@ -3,7 +3,7 @@ import { MinusIcon, PlusIcon } from 'lucide-react';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import createTicketRequest from '@/libs/createTicketRequest';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/app/api/auth/authOptions';
 import { getServerSession } from 'next-auth';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';

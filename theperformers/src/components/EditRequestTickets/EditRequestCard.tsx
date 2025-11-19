@@ -5,7 +5,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import updateTicketRequest from '@/libs/updateTicketRequest';
 import deleteTicketRequest from '@/libs/deleteTicketRequest';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/app/api/auth/authOptions';
 import { getServerSession } from 'next-auth';
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
