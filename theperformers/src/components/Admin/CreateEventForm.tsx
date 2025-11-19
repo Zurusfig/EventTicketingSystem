@@ -185,31 +185,45 @@ export default function CreateEventForm() {
 
         {/* RIGHT SIDE (1 image) */}
         <div className="flex flex-col items-center">
-          <div className="relative w-full h-[180px] bg-white rounded-lg border flex items-center justify-center overflow-hidden">
-            {!imageUrl ? (
-              <p className="text-gray-500 text-sm">No image uploaded</p>
-            ) : (
-              <img src={imageUrl} className="w-full h-full object-cover" />
-            )}
-          </div>
+  <div className="relative w-full h-[180px] bg-white rounded-lg border flex items-center justify-center overflow-hidden">
+    {!imageUrl ? (
+      <p className="text-gray-500 text-sm">No image uploaded</p>
+    ) : (
+      <img src={imageUrl} className="w-full h-full object-cover" />
+    )}
+  </div>
 
-          <input
-            type="file"
-            id="imgUpload"
-            accept="image/*"
-            className="hidden"
-            onChange={handleImageChange}
-          />
+  {/* Hidden input */}
+  <input
+    type="file"
+    id="imgUpload"
+    accept="image/*"
+    className="hidden"
+    onChange={handleImageChange}
+  />
 
-          <label
-            htmlFor="imgUpload"
-            className={`mt-3 px-4 py-2 bg-gray-200 rounded-md cursor-pointer ${
-              uploading ? "opacity-50 pointer-events-none" : "hover:bg-gray-300"
-            }`}
-          >
-            {uploading ? "Uploading..." : "Upload Image"}
-          </label>
-        </div>
+  {/* Button switches based on whether image exists */}
+  {!imageUrl ? (
+    <label
+      htmlFor="imgUpload"
+      className={`mt-3 px-4 py-2 bg-gray-200 rounded-md cursor-pointer ${
+        uploading ? "opacity-50 pointer-events-none" : "hover:bg-gray-300"
+      }`}
+    >
+      {uploading ? "Uploading..." : "Upload Image"}
+    </label>
+  ) : (
+    <button
+      onClick={() => {
+        setImageUrl(null);
+        setImageFile(null);
+      }}
+      className="mt-3 px-4 py-2 bg-red-400 text-white rounded-md hover:bg-red-500"
+    >
+      Delete Image
+    </button>
+  )}
+</div>
       </div>
 
       {/* BUTTONS */}
@@ -223,7 +237,7 @@ export default function CreateEventForm() {
         </button>
 
         <button
-          onClick={() => (window.location.href = "/admin/manage-events")}
+          onClick={() => (window.location.href = "/admin")}
           className="px-6 py-2 bg-red-400 text-white rounded-lg font-semibold"
         >
           Cancel
