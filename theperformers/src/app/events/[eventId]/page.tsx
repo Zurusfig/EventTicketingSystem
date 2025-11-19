@@ -16,7 +16,6 @@ export default async function EventDetailPage({
 
 
   return (
-    <ScrollDisabler breakpoint={1050}>
     <div className="px-10 py-10 min-h-screen w-full min-h-screen">
       {/* Title */}
       <h1 className="text-3xl font-bold mb-6 text-text-color">{event.name}</h1>
@@ -80,6 +79,5 @@ export default async function EventDetailPage({
         </div>
       </Link>
     </div>
-    </ScrollDisabler>
   );
 }

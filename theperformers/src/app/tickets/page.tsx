@@ -14,7 +14,7 @@ export default function TicketsPage(){
     const [error, setError] = useState<string | null>(null);
 
 
-    // console.log(tickets);
+    console.log(tickets);
 
     useEffect(() => {
         if (!session?.user?.token) {
@@ -30,11 +30,32 @@ export default function TicketsPage(){
         setIsLoading(true);
         setError(null);
         try {
-            const respone = await getUserTickets(session?.user?.token || '');
-            setTickets(respone.data);
-            console.log("Tickets:", respone.data);
+            const response = await getUserTickets(session?.user?.token || '');
+            
+            if (response && response.data) {
+                // Filter out any tickets with null user or event (defensive programming)
+                const validTickets = response.data.filter((ticket: Ticket) => 
+                    ticket && ticket.event && ticket.event._id && ticket.user && ticket.user._id
+                );
+                
+                setTickets(validTickets);
+                console.log("Valid tickets:", validTickets);
+                
+                // Show warning if some tickets were filtered out
+                if (validTickets.length < response.data.length) {
+                    console.warn(`Filtered out ${response.data.length - validTickets.length} invalid tickets`);
+                }
+            } else if (response && !response.success) {
+                // Backend returned error but we handled it gracefully
+                setTickets([]);
+                setError(response.message || "No tickets available");
+            } else {
+                setTickets([]);
+            }
         } catch (error: any) {
-            setError(error.message);
+            console.error("Fetch tickets error:", error);
+            setError(error.message || "Failed to fetch tickets. Please try again.");
+            setTickets([]);
         } finally {
             setIsLoading(false);
         }
