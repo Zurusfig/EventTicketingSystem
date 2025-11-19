@@ -24,7 +24,7 @@ export default function RegisterPage() {
     }
 
     return (
-        <div className="min-h-screen fixed inset-0">
+      <div className="min-h-screen flex items-center justify-center py-12 bg-bg-color">
         <AuthCard title="Sign Up">
       <RegisterForm />
       <div className="text-sm text-center text-text-alternate-color mt-4">
