@@ -45,7 +45,7 @@ export function useRegisterForm() {
             )
 
             const data = await res.json().catch(() => null);
-            console.log("status", res.status, "body", data);
+            //console.log("status", res.status, "body", data);
 
             if(!res.ok) {
                 const body = await res.json();

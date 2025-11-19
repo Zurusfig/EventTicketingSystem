@@ -7,7 +7,7 @@ export default function EditTicketPage() {
     const searchParams = useSearchParams();
     const ticketId = searchParams.get('ticketId');
 
-    console.log("Ticket ID:", ticketId);
+    // console.log("Ticket ID:", ticketId);
 
     useEffect(() => {
         document.body.style.overflow = 'hidden';

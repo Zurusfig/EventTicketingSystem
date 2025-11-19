@@ -21,12 +21,13 @@ export default function DemoEventCard({
     if (eventData === null) {
         return (
             <div
-                className="
+            className="
             bg-bg-alternate-color
             rounded-2xl shadow-md border border-gray-200
             p-4 flex flex-col gap-3
             h-[500px]
-            w-full max-w-[360px]
+            transition hover:scale-[1.03] hover:shadow-lg cursor-pointer
+            w-full
             "
             >
                 <div className="w-full h-[60%] bg-surface-color rounded-md mb-4 animate-pulse" />

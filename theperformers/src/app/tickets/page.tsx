@@ -14,7 +14,7 @@ export default function TicketsPage(){
     const [error, setError] = useState<string | null>(null);
 
 
-    console.log(tickets);
+    // console.log(tickets);
 
     useEffect(() => {
         if (!session?.user?.token) {
