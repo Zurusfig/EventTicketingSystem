@@ -1,4 +1,4 @@
-import { Calendar, MapPin, Ticket } from "lucide-react";
+import { Calendar, MapPin, Ticket, UserIcon } from "lucide-react";
 import Link from "next/link";
 import Divider from '@mui/material/Divider';
 
@@ -6,8 +6,17 @@ export interface Ticket {
     _id: string;
     event: Event;
     ticketAmount: number;
+    user: User;
     createdAt: string;
     updatedAt: string;
+}
+
+interface User {
+    _id: string;
+    name: string;
+    email: string;
+    tel: string;
+    role: string;
 }
 
 interface Event {
@@ -33,11 +42,11 @@ export default function TicketCard({ ticket,color }: { ticket: Ticket, color: st
                         </div>
                         <div className="text-sm text-navy-color flex flex-row gap-2 text-center sm:text-left">
                             <Calendar size={16} />
-                            Event Date: {new Date(ticket.event.eventDate).toLocaleDateString()}
+                            Event Date: <span className="font-bold">{new Date(ticket.event.eventDate).toLocaleDateString()}</span>
                         </div>
                         <div className="text-sm text-navy-color flex flex-row gap-2 text-center sm:text-left">
                             <MapPin size={16}/>
-                            {ticket.event.venue}
+                            Venue: <span className="font-bold">{ticket.event.venue}</span>
                         </div>
                     </div>
                     <div className="flex flex-col gap-4 items-center sm:items-end mt-4 sm:mt-0">
@@ -47,11 +56,15 @@ export default function TicketCard({ ticket,color }: { ticket: Ticket, color: st
                         <div className="flex flex-col gap-2 items-center sm:items-end w-full">
                             <div className="text-sm text-navy-color flex flex-row gap-2 text-center sm:text-right text-nowrap">
                                 <Ticket size={16} />
-                                {ticket.ticketAmount} / 5 tickets requested
+                                <span className="font-bold">{ticket.ticketAmount} / 5 tickets requested</span>
                             </div>
                             <div className="text-sm text-navy-color flex flex-row gap-2 text-center sm:text-right">
                                 {/* <Calendar size={16} /> */}
-                                Date Requested: {new Date(ticket.createdAt).toLocaleDateString()}
+                                Date Requested: <span className="font-bold">{new Date(ticket.createdAt).toLocaleDateString()}</span>
+                            </div>
+                            <div className="text-sm text-navy-color flex flex-row gap-2 text-center sm:text-right">
+                                <UserIcon size={16} />
+                                Requested by: <span className="font-bold">{ticket.user.name}</span>
                             </div>
                         </div>
                         <Link href={`/edit-ticket?ticketId=${ticket._id}`}>
