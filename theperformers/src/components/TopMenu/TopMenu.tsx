@@ -33,7 +33,7 @@ export default function TopMenu() {
               <TopMenuItem text="Events" pageRoute="/events" />
             </div>
             <div>
-              <TopMenuItem text="My Tickets" pageRoute="/tickets" />
+              <TopMenuItem text="Tickets" pageRoute="/tickets" />
             </div>
           </div>
 
