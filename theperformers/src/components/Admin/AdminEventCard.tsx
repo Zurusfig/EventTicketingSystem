@@ -76,14 +76,14 @@ export default function AdminEventCard({
       <div className="mt-auto flex justify-between pt-4">
         <button
           onClick={() => onEdit?.(id)}
-          className="px-4 py-1 rounded-md bg-gray-900 text-white hover:bg-gray-700 transition"
+          className="cursor-pointer px-4 py-1 rounded-full bg-navy-color text-white hover:bg-navy-color/80 hover:scale-105 transition"
         >
           Edit
         </button>
 
         <button
           onClick={() => onDelete?.(id)}
-          className="px-4 py-1 rounded-md bg-red-500 text-white hover:bg-red-600 transition"
+          className="cursor-pointer px-4 py-1 rounded-full bg-red-400 text-white hover:bg-red-500 hover:scale-105 transition"
         >
           Delete
         </button>
