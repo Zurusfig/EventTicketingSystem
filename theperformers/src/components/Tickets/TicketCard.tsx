@@ -62,10 +62,12 @@ export default function TicketCard({ ticket,color }: { ticket: Ticket, color: st
                                 {/* <Calendar size={16} /> */}
                                 Date Requested: <span className="font-bold">{new Date(ticket.createdAt).toLocaleDateString()}</span>
                             </div>
-                            <div className="text-sm text-navy-color flex flex-row gap-2 text-center sm:text-right">
+                            { (ticket.user.name) ? <div className="text-sm text-navy-color flex flex-row gap-2 text-center sm:text-right">
                                 <UserIcon size={16} />
                                 Requested by: <span className="font-bold">{ticket.user.name}</span>
-                            </div>
+                            </div> : <div className="text-sm text-navy-color flex flex-row gap-2 text-center sm:text-right">
+                                
+                            </div>}
                         </div>
                         <Link href={`/edit-ticket?ticketId=${ticket._id}`}>
                             <button className="bg-red-400 text-white px-6 py-2 rounded-full hover:scale-105 hover:bg-red-500 transition-all duration-300 cursor-pointer">
