@@ -98,7 +98,7 @@ export default function TopMenu() {
             <TopMenuItem text="Request Tickets" pageRoute="/request-tickets" />
           </div> */}
           <div className="block w-full text-left">
-            <TopMenuItem text="My Tickets" pageRoute="/tickets" />
+            <TopMenuItem text="Tickets" pageRoute="/tickets" />
           </div>
         </div>
 
