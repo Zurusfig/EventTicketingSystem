@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 export default function CreateEventForm() {
+  const { data: session } = useSession();   // session loads here
+
   const [name, setName] = useState("");
   const [eventDate, setEventDate] = useState("");
   const [description, setDescription] = useState("");
@@ -20,7 +23,7 @@ export default function CreateEventForm() {
 
     const arr = [...images];
     for (let file of files) {
-      arr.push(URL.createObjectURL(file));
+      arr.push(URL.createObjectURL(file));  // temporary — we will fix later
     }
     setImages(arr);
   }
@@ -34,51 +37,57 @@ export default function CreateEventForm() {
   }
 
   /** Submit event to backend */
-  async function handleSubmit() {
-    if (!name || !eventDate || !venue || !organizer) {
-      alert("Please fill all required fields!");
+async function handleSubmit() {
+  console.log("session on submit:", session);
+
+  const token = session?.user?.token;
+  if (!token) {
+    alert("Not authenticated. Please login again.");
+    return;
+  }
+
+  if (!name || !eventDate || !venue || !organizer) {
+    alert("Please fill all required fields!");
+    return;
+  }
+
+  const body = {
+    name,
+    description,
+    eventDate,
+    venue,
+    organizer,
+    availableTicket: Number(availableTicket) || 0,
+    posterPicture: images[0] || ""  // FIXED
+  };
+
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/events`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(body),
+    });
+
+    const json = await res.json();
+    console.log("STATUS:", res.status);
+    console.log("RESPONSE:", json);
+
+    if (!res.ok) {
+      alert(json.message || "Failed to create event.");
       return;
     }
 
-    const body = {
-      name,
-      description,
-      eventDate,
-      venue,
-      organizer,
-      availableTicket: Number(availableTicket) || 0,
-      posterPicture: images, // matches backend
-    };
+    alert("Event created successfully!");
+    window.location.href = "/admin";
 
-    try {
-      const token = localStorage.getItem("token"); // MUST be admin token
-
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/v1/events`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // REQUIRED BY BACKEND
-          },
-          body: JSON.stringify(body),
-        }
-      );
-
-      const json = await res.json();
-
-      if (!res.ok) {
-        alert(json.message || "Failed to create event.");
-        return;
-      }
-
-      alert("Event created successfully!");
-      window.location.href = "/admin/manage-events";
-
-    } catch (err) {
-      alert("Server error");
-    }
+  } catch (err) {
+    console.log(err);
+    alert("Server error");
   }
+}
 
   return (
     <div className="w-full bg-purple-300 p-6 sm:p-10 rounded-xl shadow-lg border">
@@ -105,9 +114,8 @@ export default function CreateEventForm() {
             <label className="font-semibold">Date *</label>
             <input
               type="date"
-              className="w-full mt-1 px-4 py-2 rounded-md border"
               value={eventDate}
-              onChange={(e) => setEventDate(e.target.value)}
+              onChange={(e) => setEventDate(e.target.value)}   // format = YYYY-MM-DD
             />
           </div>
 
@@ -164,7 +172,6 @@ export default function CreateEventForm() {
         {/* RIGHT SIDE IMAGE UPLOAD */}
         <div className="flex flex-col items-center">
 
-          {/* Image preview */}
           <div className="relative w-full h-[180px] bg-white rounded-lg border flex items-center justify-center overflow-hidden">
             {images.length === 0 ? (
               <p className="text-gray-500 text-sm">No image selected</p>
@@ -185,7 +192,6 @@ export default function CreateEventForm() {
             )}
           </div>
 
-          {/* Slider dots */}
           {images.length > 1 && (
             <div className="flex gap-2 mt-3">
               {images.map((_, i) => (
@@ -200,7 +206,6 @@ export default function CreateEventForm() {
             </div>
           )}
 
-          {/* Upload button */}
           <input
             type="file"
             id="imgUpload"
@@ -229,7 +234,10 @@ export default function CreateEventForm() {
           Create Event
         </button>
 
-        <button className="px-6 py-2 bg-red-400 text-white rounded-lg font-semibold">
+        <button
+          onClick={() => window.location.href = "/admin/manage-events"}
+          className="px-6 py-2 bg-red-400 text-white rounded-lg font-semibold"
+        >
           Cancel
         </button>
 
