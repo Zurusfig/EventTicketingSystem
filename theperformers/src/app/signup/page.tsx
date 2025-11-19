@@ -3,7 +3,9 @@ import RegisterForm from "@/components/Auth/RegisterForm";
 import Link from "next/link";
 
 export default function RegisterPage() {
+
     return (
+        <div className="min-h-screen fixed inset-0 overflow-hidden">
         <AuthCard title="Sign Up">
       <RegisterForm />
       <div className="text-sm text-center text-text-alternate-color mt-4">
@@ -16,5 +18,6 @@ export default function RegisterPage() {
         </Link>
       </div>
     </AuthCard>
+    </div>
     );
 }

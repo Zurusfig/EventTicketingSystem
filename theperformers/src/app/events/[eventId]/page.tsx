@@ -1,36 +1,7 @@
 import { Calendar, MapPin, User, Ticket } from "lucide-react";
 import ImageSlider from "@/components/ImageDisplay/ImageSilder";
 import getEvent from "@/libs/getEvent";
-
-// -------- MOCK FALLBACK DATA --------
-const mockEvent = {
-  _id: "1",
-  name: "Football Tryout",
-  eventDate: "2025-12-15",
-  venue: "CU Sports Complex",
-  organizer: "Organizer Name",
-  availableTicket: 3,
-  description:
-    "Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...",
-  posterPicture: "",
-};
-
-// -------- FETCH REAL EVENT --------
-async function fetchEvent(id: string) {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/events/${id}`,
-      { cache: "no-store" }
-    );
-
-    if (!res.ok) return mockEvent;
-
-    const json = await res.json();
-    return json.data || mockEvent;
-  } catch {
-    return mockEvent;
-  }
-}
+import Link from "next/link";
 
 export default async function EventDetailPage({
   params,
@@ -43,6 +14,7 @@ export default async function EventDetailPage({
 
   console.log(event);
 
+
   return (
     <div className="px-10 py-10 min-h-screen w-full min-h-screen">
       {/* Title */}
@@ -52,7 +24,7 @@ export default async function EventDetailPage({
       <div className="bg-bg-alternate-color p-6 rounded-xl shadow-lg flex flex-col lg:flex-row gap-6">
 
         {/* Poster */}
-        <div className="flex-1 min-w-[300px]">
+        <div className="flex-1 h-[60%] lg:h-full">
         <ImageSlider
           images={
             event.posterPicture
@@ -69,11 +41,11 @@ export default async function EventDetailPage({
       </div>
 
         {/* Event Info */}
-        <div className="flex-1 space-y-3 text-text-alternate-color">
+        <div className="min-h-[300px] flex-1 space-y-3 text-text-alternate-color text-lg md:text-xl lg:text-2xl">
 
           <div className="flex items-center gap-2">
             <Calendar size={18} />
-            <span>{new Date(event.eventDate).toLocaleDateString()}</span>
+            <span>{new Date(event.eventDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -92,18 +64,20 @@ export default async function EventDetailPage({
           </div>
 
           {/* Description */}
-          <p className="text-sm text-text-alternate-color mt-4 leading-relaxed">
+          <p className="text-text-alternate-color mt-4 leading-relaxed">
             {event.description}
           </p>
         </div>
       </div>
 
       {/* Request Ticket Button */}
-      <div className="mt-8 flex justify-center">
-        <button className="cursor-pointer bg-lime-color hover:bg-lime-color/90 hover:scale-105 transition text-black font-semibold px-10 py-3 rounded-full shadow-md">
-          Request Ticket
-        </button>
-      </div>
+      <Link href={`/request-tickets?id=${eventId}&name=${event.name}`}>
+        <div className="flex justify-center items-center m-8">
+          <button className="cursor-pointer bg-lime-color hover:bg-lime-color/90 hover:scale-105 transition text-navy-color font-semibold px-10 py-3 rounded-full shadow-md text-lg md:text-xl lg:text-2xl xl:text-3xl transition-all duration-100">
+            Request Ticket
+          </button>
+        </div>
+      </Link>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import {getServerSession} from "next-auth";
-import {authOptions} from "@/app/api/auth/[...nextauth]/route";
+import {authOptions} from "@/app/api/auth/authOptions";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import TopMenuItem from "./TopMenuItem";
@@ -18,8 +18,6 @@ export default function TopMenu() {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  console.log
-
   return (
     <nav className="fixed inset-x-0 top-0 z-50 bg-bg-alternate-color text-text-alternate-color border-b border-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-bg-alternate-color text-text-alternate-color">
@@ -33,10 +31,9 @@ export default function TopMenu() {
           <div className="hidden md:flex justify-between font-primary md:items-center md:space-x-8 w-[80%] mx-2">
             <div className="flex justify-between space-x-8">
               <TopMenuItem text="Events" pageRoute="/events" />
-              <TopMenuItem text="Request Tickets" pageRoute="/request-tickets" />
             </div>
             <div>
-              <TopMenuItem text="My Tickets" pageRoute="/my-tickets" />
+              <TopMenuItem text="My Tickets" pageRoute="/tickets" />
             </div>
           </div>
 
@@ -97,11 +94,11 @@ export default function TopMenu() {
           <div className="block w-full text-left">
             <TopMenuItem text="Events" pageRoute="/events" />
           </div>
-          <div className="block w-full text-left">
+          {/* <div className="block w-full text-left">
             <TopMenuItem text="Request Tickets" pageRoute="/request-tickets" />
-          </div>
+          </div> */}
           <div className="block w-full text-left">
-            <TopMenuItem text="My Tickets" pageRoute="/my-tickets" />
+            <TopMenuItem text="My Tickets" pageRoute="/tickets" />
           </div>
         </div>
 

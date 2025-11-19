@@ -19,8 +19,8 @@
 
   /* Brand Accent Colors */
   --sys-accent-lime: #c7e651;
-  --sys-accent-blue: #51a2ff;
-  --sys-accent-purple: #c27aff;
+  --sys-accent-blue: #70B3FF;
+  --sys-accent-purple: #CD99F9;
   --sys-accent-yellow: #ffdf20;
   --sys-accent-navy: #1d293d;
   
@@ -86,8 +86,8 @@
 
     /* Brand Accent Colors (they are bright, so they work well!) */
     --sys-accent-lime: #c7e651;
-    --sys-accent-blue: #51a2ff;
-    --sys-accent-purple: #c27aff;
+    --sys-accent-blue: #70B3FF;
+    --sys-accent-purple: #CD99F9;
     --sys-accent-yellow: #ffdf20;
     --sys-accent-navy: #1d293d; /* This one might be hard to see */
 
