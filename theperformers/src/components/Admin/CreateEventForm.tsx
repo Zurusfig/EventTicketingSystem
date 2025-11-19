@@ -81,7 +81,7 @@ async function handleSubmit() {
     }
 
     alert("Event created successfully!");
-    window.location.href = "/admin";
+    window.location.href = "/admin/manage-events";
 
   } catch (err) {
     console.log(err);
