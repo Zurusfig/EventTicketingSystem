@@ -6,26 +6,25 @@ export default withAuth(
   async function middleware(req) {
     const token = req.nextauth.token as any;
 
-    // 1) If not logged in at all, let "authorized" callback handle it
+    // 1) If not logged in at all, let "authorized" handle redirect to login
     if (!token) return NextResponse.next();
 
     const pathname = req.nextUrl.pathname;
+    const backendToken = token.token; // backend JWT
 
-    // 2) Only do admin check for /admin routes
-    if (pathname.startsWith("/admin")) {
-      const backendToken = token.token;   // <-- backend JWT we stored from login
+    // If somehow logged in but missing backend JWT
+    if (!backendToken) {
+      return NextResponse.redirect(new URL("/api/auth/signin", req.url));
+    }
 
-      if (!backendToken) {
-        // Logged in to NextAuth but no backend token -> force login again
-        return NextResponse.redirect(new URL("/api/auth/signin", req.url));
-      }
-
+    // ---------------------------------------------
+    // NEW RULE: ADMIN CANNOT ACCESS /request-tickets
+    // ---------------------------------------------
+    if (pathname.startsWith("/request-tickets")) {
       try {
-        // Call backend /auth/me to ask: "who is this user?"
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/me`,
           {
-            method: "GET",
             headers: {
               Authorization: `Bearer ${backendToken}`,
             },
@@ -33,33 +32,59 @@ export default withAuth(
         );
 
         if (!res.ok) {
-          // token invalid/expired -> treat as unauthorized
           return NextResponse.redirect(new URL("/unauthorized", req.url));
         }
 
         const json = await res.json();
         const role = json?.data?.role;
 
-        // 3) Only allow admins
+        if (role === "admin") {
+          // Admins not allowed here
+          return NextResponse.redirect(new URL("/unauthorized", req.url));
+        }
+      } catch (err) {
+        console.error("Error checking role for request-tickets:", err);
+        return NextResponse.redirect(new URL("/unauthorized", req.url));
+      }
+    }
+
+    // ---------------------------------------------
+    // ADMIN CHECK FOR /admin ROUTES
+    // ---------------------------------------------
+    if (pathname.startsWith("/admin")) {
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/me`,
+          {
+            headers: {
+              Authorization: `Bearer ${backendToken}`,
+            },
+          }
+        );
+
+        if (!res.ok) {
+          return NextResponse.redirect(new URL("/unauthorized", req.url));
+        }
+
+        const json = await res.json();
+        const role = json?.data?.role;
+
         if (role !== "admin") {
           return NextResponse.redirect(new URL("/unauthorized", req.url));
         }
 
-        // if role is admin -> allow through
-        return NextResponse.next();
+        return NextResponse.next(); // allow admin
       } catch (err) {
         console.error("Error checking admin in middleware:", err);
         return NextResponse.redirect(new URL("/unauthorized", req.url));
       }
     }
 
-    // 4) For non-admin routes just continue
+    // Everything else allowed if logged in
     return NextResponse.next();
   },
   {
     callbacks: {
-      // "authorized" just checks that there *is* a NextAuth token.
-      // The admin role check is handled above.
       authorized: ({ token }) => !!token,
     },
   }
