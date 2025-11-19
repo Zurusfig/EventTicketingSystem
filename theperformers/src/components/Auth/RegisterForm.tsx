@@ -4,10 +4,12 @@ import { useRegisterForm } from "@/hooks/useRegisterForm";
 
 export default function RegisterForm() {
     const {
-        values: { email, name, tel, password },
-        setters: { setEmail, setName, setTel, setPassword },
+        values: { email, name, tel, password, confirmPassword },
+        setters: { setEmail, setName, setTel, setPassword, setConfirmPassword },
         loading,
         error,
+        passwordStrength,
+        passwordsMatch,
         handleSubmit,
     } = useRegisterForm();
     return (
@@ -57,6 +59,36 @@ export default function RegisterForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 />
+                {password && (
+                    <div className="text-xs mt-1">
+                        <div className={`${passwordStrength.score >= 2 ? 'text-green-500' : 'text-yellow-500'}`}>
+                            Strength: {passwordStrength.label}
+                        </div>
+                        {passwordStrength.requirements.map((req, idx) => (
+                            <div key={idx} className={req.met ? 'text-green-500' : 'text-gray-400'}>
+                                {req.met ? '✓' : '○'} {req.text}
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+
+            <div>
+                <div className="block text-sm mb-1">Confirm Password</div>
+                <input
+                    type="password"
+                    className={`w-full border rounded px-3 py-2 bg-bg-color text-text-alternate-color ${
+                        confirmPassword && !passwordsMatch 
+                            ? 'border-red-500' 
+                            : 'border-border-color'
+                    }`}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                />
+                {confirmPassword && !passwordsMatch && (
+                    <div className="text-red-500 text-xs mt-1">Passwords do not match</div>
+                )}
             </div>
 
             <button
