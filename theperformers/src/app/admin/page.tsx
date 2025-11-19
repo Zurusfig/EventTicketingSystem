@@ -67,7 +67,7 @@ export default function AdminManageEvents() {
         </h1>
 
         <button
-          className="px-4 py-2 bg-lime-300 rounded-lg text-black font-semibold hover:bg-lime-400"
+          className="cursor-pointer px-4 py-2 bg-lime-color rounded-full text-navy-color font-semibold hover:bg-lime-color/80 hover:scale-105 transition-all duration-300"
           onClick={() => (window.location.href = "/admin/create-event")}
         >
           + Create Event
