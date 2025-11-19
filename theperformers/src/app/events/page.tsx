@@ -70,7 +70,7 @@ export default async function EventsPage() {
 
   const events = (await getEvents()).data;
 
-  console.log(events);
+  // console.log(events);
 
   // Rotating pastel colors matching your mockup
   const colors: string[] = [

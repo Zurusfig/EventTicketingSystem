@@ -2,7 +2,7 @@ import { Calendar, MapPin, User, Ticket } from "lucide-react";
 import ImageSlider from "@/components/ImageDisplay/ImageSilder";
 import getEvent from "@/libs/getEvent";
 import Link from "next/link";
-
+import ScrollDisabler from "@/components/ScrollDisabler";
 export default async function EventDetailPage({
   params,
 }: {
@@ -12,10 +12,11 @@ export default async function EventDetailPage({
   const { eventId } = await params;
   const event = (await getEvent(eventId)).data;
 
-  console.log(event);
+  // console.log(event);
 
 
   return (
+    <ScrollDisabler breakpoint={1050}>
     <div className="px-10 py-10 min-h-screen w-full min-h-screen">
       {/* Title */}
       <h1 className="text-3xl font-bold mb-6 text-text-color">{event.name}</h1>
@@ -73,11 +74,14 @@ export default async function EventDetailPage({
       {/* Request Ticket Button */}
       <Link href={`/request-tickets?id=${eventId}&name=${event.name}`}>
         <div className="flex justify-center items-center m-8">
-          <button className="cursor-pointer bg-lime-color hover:bg-lime-color/90 hover:scale-105 transition text-navy-color font-semibold px-10 py-3 rounded-full shadow-md text-lg md:text-xl lg:text-2xl xl:text-3xl transition-all duration-100">
+          {event.availableTicket > 0 ? <button className="cursor-pointer bg-lime-color hover:bg-lime-color/90 hover:scale-105 transition text-navy-color font-semibold px-10 py-3 rounded-full shadow-md text-lg md:text-xl lg:text-2xl xl:text-3xl transition-all duration-100">
             Request Ticket
-          </button>
+          </button> : <button className="cursor-not-allowed bg-lime-color/70 text-navy-color/70 font-semibold px-10 py-3 rounded-full shadow-md text-lg md:text-xl lg:text-2xl xl:text-3xl transition-all duration-100">
+            Event Sold Out
+          </button>}
         </div>
       </Link>
     </div>
+    </ScrollDisabler>
   );
 }

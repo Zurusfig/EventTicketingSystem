@@ -26,7 +26,7 @@ export default function EditRequestCard({ ticketId }: { ticketId: string | null 
     const [eventName, setEventName] = useState<string | null>(null);
     const [eventDescription, setEventDescription] = useState<string | null>(null);
 
-    console.log("Ticket ID:", ticketId);
+    // console.log("Ticket ID:", ticketId);
 
     const fetchTicket = async () => {
         if (!ticketId) {
@@ -44,14 +44,14 @@ export default function EditRequestCard({ ticketId }: { ticketId: string | null 
         setIsLoadingTicket(true);
         try {
             const ticketData = await getTicket(ticketId, session.user.token);
-            console.log("Ticket:", ticketData);
+            // console.log("Ticket:", ticketData);
             setTicket(ticketData);
             setTicketAmount(ticketData.ticketAmount || 1);
 
-            console.log("Ticket Data: ", ticketData);
-            console.log("Event Name: ", ticketData.data.event.name);
+            // console.log("Ticket Data: ", ticketData);
+            //console.log("Event Name: ", ticketData.data.event.name);
             setEventName(ticketData.data.event.name);
-            console.log("Event Description: ", ticketData.data.event.description);
+            // console.log("Event Description: ", ticketData.data.event.description);
             setEventDescription(ticketData.data.event.description);
         } catch (error: any) {
             setError(error.message);
@@ -92,8 +92,8 @@ export default function EditRequestCard({ ticketId }: { ticketId: string | null 
         
         try {
             const ticketRequest = await updateTicketRequest(ticketId, ticketAmount, session.user.token);
-            console.log("Ticket Request updated:", ticketRequest);
-            console.log("Ticket Request updated status:", ticketRequest.status);
+            //console.log("Ticket Request updated:", ticketRequest);
+            //console.log("Ticket Request updated status:", ticketRequest.status);
             if (ticketRequest.success) {
                 setSuccess(true);
                 router.push('/tickets');

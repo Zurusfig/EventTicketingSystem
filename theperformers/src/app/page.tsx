@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
+import ScrollDisabler from "@/components/ScrollDisabler";
 export default function Home() {
   const images = [
     "/images/slide1.jpg",
@@ -19,8 +19,10 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+
   return (
-    <main
+    <ScrollDisabler>
+    <div
       className="min-h-screen w-full"
     >
 
@@ -35,7 +37,7 @@ export default function Home() {
           Every Ticket, One Request Away.
         </p>
 
-        <div className="mt-10 w-[600px] h-[400px] bg-white p-6 rounded-md shadow-md relative overflow-hidden">
+        <div className="mt-10 min-w-[95%] sm:min-w-[600px] max-w-[600px] h-[400px] bg-white p-6 rounded-md shadow-md relative overflow-hidden">
           <Image
             src={images[index]}
             alt="Slideshow"
@@ -51,6 +53,7 @@ export default function Home() {
         </button>
 
       </div>
-    </main>
+    </div>
+    </ScrollDisabler>
   );
 }

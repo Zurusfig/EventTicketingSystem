@@ -12,10 +12,10 @@ export default function RequestPage() {
     const eventId = searchParams.get('id');
     const eventName = searchParams.get('name');
     const [eventInfo, setEventInfo] = useState<DemoEventCardProps | null>(null);
-    
+
     useEffect(() => {
         const fetchEvent = async () => {
-            console.log(eventId);
+            // console.log(eventId);
             const event = await getEvent(eventId as string);
             if (!event.data) {
                 setEventInfo(null);
@@ -42,7 +42,7 @@ export default function RequestPage() {
                 <div className="w-full sm:w-1/3 flex-shrink-0">
                     {eventInfo && <DemoEventCard eventData={eventInfo.eventData} />}
                     {!eventInfo && <DemoEventCard eventData={null} />}
-                </div>
+                </div>x
                 <div className="w-full sm:w-2/3 flex-shrink-0">
                     <RequestCard eventName={eventName || eventInfo?.eventData?.title || ''} 
                     eventId={eventId || eventInfo?.eventData?.id || ''} />

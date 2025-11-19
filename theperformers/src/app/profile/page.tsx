@@ -12,7 +12,7 @@ export default async function ProfilePage() {
 
     const profile = await getUserProfile(session.user.token);
 
-    console.log(profile);
+    // console.log(profile);
     
     return (
     <div className="font-primary flex flex-col items-center justify-center min-h-screen p-8 gap-16 sm:p-20">

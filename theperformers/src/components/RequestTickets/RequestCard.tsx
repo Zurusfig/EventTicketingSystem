@@ -46,7 +46,7 @@ export default function RequestCard({ eventName, eventId }: { eventName: string,
             console.log("Ticket Request status:", ticketRequest.status);
             if (ticketRequest.status == 201) {
                 setSuccess(true);
-                // router.push('/tickets');
+                router.push('/tickets');
             } else {
                 setError(ticketRequest.message);
             }
