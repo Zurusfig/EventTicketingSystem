@@ -46,7 +46,7 @@ export default function RequestCard({ eventName, eventId }: { eventName: string,
             console.log("Ticket Request status:", ticketRequest.status);
             if (ticketRequest.status == 201) {
                 setSuccess(true);
-                router.push('/my-tickets');
+                // router.push('/my-tickets');
             } else {
                 setError(ticketRequest.message);
             }
@@ -61,7 +61,17 @@ export default function RequestCard({ eventName, eventId }: { eventName: string,
         <>
         <div className="flex flex-col justify-evenly items-center bg-lime-color rounded-2xl shadow-md border border-gray-200 p-4 h-[400px] md:h-[500px] w-full">
                 <div className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center text-navy-color m-4 mx-6">{eventName}</div>
-                <NumberField.Root id={id} defaultValue={1} min={1} max={5} className="flex flex-col items-start gap-1">
+                <NumberField.Root 
+                    id={id} 
+                    value={ticketAmount}
+                    onValueChange={(e) => {
+                        const newValue = Number(e) || 1;  // Ensure value is never undefined
+                        setTicketAmount(Math.min(5, Math.max(1, newValue)));  // Clamp between 1-5
+                    }}
+                    min={1} 
+                    max={5} 
+                    className="flex flex-col items-start gap-1"
+                >
                     <NumberField.ScrubArea className="cursor-ew-resize">
                         <label htmlFor={id} className="cursor-ew-resize font-medium text-navy-color text-base md:text-lg lg:text-xl xl:text-2xl">
                             Ticket Amount (1-5)
@@ -72,16 +82,13 @@ export default function RequestCard({ eventName, eventId }: { eventName: string,
 
                     <NumberField.Group className="flex">
                         <NumberField.Decrement 
-                        onClick={() => setTicketAmount(ticketAmount - 1)}
                         className="cursor-pointer flex size-10 md:size-12 lg:size-14 xl:size-16 items-center justify-center rounded-tl-md rounded-bl-md bg-navy-color bg-clip-padding text-white select-none hover:bg-navy-color/90 active:bg-navy-color/90">
                             <MinusIcon className="text-white" />
                         </NumberField.Decrement>
                         <NumberField.Input 
-                        value={ticketAmount}
-                        onChange={(e) => setTicketAmount(Number(e.target.value))}
-                        className="h-10 md:h-12 lg:h-14 xl:h-16 w-32 md:w-40 lg:w-48 xl:w-60 border-t border-b border-gray-200 text-center text-lg md:text-xl lg:text-2xl xl:text-3xl text-navy-color tabular-nums focus:outline-none" />
+                        className="bg-white h-10 md:h-12 lg:h-14 xl:h-16 w-32 md:w-40 lg:w-48 xl:w-60 border-t border-b border-gray-200 text-center text-lg md:text-xl lg:text-2xl xl:text-3xl text-navy-color tabular-nums focus:outline-none" 
+                        />
                         <NumberField.Increment 
-                        onClick={() => setTicketAmount(ticketAmount+1)}
                         className="cursor-pointer flex size-10 md:size-12 lg:size-14 xl:size-16 items-center justify-center rounded-tr-md rounded-br-md bg-navy-color bg-clip-padding text-white select-none hover:bg-navy-color/90 active:bg-navy-color/90">
                             <PlusIcon className="text-white" />
                         </NumberField.Increment>
