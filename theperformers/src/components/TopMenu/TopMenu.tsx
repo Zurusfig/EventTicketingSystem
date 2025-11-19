@@ -7,6 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import TopMenuItem from "./TopMenuItem";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import ThemeSwitch from "../ThemeSwitch";
 
 export default function TopMenu() {
 
@@ -31,9 +32,10 @@ export default function TopMenu() {
           <div className="hidden md:flex justify-between font-primary md:items-center md:space-x-8 w-[80%] mx-2">
             <div className="flex justify-between space-x-8">
               <TopMenuItem text="Events" pageRoute="/events" />
+              <TopMenuItem text="Tickets" pageRoute="/tickets" />
             </div>
             <div>
-              <TopMenuItem text="Tickets" pageRoute="/tickets" />
+              <ThemeSwitch />
             </div>
           </div>
 
