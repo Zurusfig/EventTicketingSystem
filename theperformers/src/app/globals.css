@@ -1,10 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/unbounded/400.css';
+@import '@fontsource/unbounded/700.css';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/unbounded';
 @import "tailwindcss";
 
 :root {
   --font-primary: "Unbounded", sans-serif;
   --font-secondary: "Inter", sans-serif;
+  font-family: "Unbounded", "Inter Variable", Helvetica, sans-serif;
 }
 
 :root {
@@ -101,5 +107,5 @@
 body {
   background: var(--sys-color-bg);
   color: var(--sys-color-text);
-  font-family: "Unbounded", Helvetica, sans-serif;
+  font-family: "Unbounded", "Inter Variable", Helvetica, sans-serif;
 }
