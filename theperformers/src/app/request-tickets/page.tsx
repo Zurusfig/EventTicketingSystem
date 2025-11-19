@@ -12,6 +12,7 @@ export default function RequestPage() {
     const eventId = searchParams.get('id');
     const eventName = searchParams.get('name');
     const [eventInfo, setEventInfo] = useState<DemoEventCardProps | null>(null);
+    
     useEffect(() => {
         const fetchEvent = async () => {
             console.log(eventId);

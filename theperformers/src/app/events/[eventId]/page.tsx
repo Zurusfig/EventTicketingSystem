@@ -3,36 +3,6 @@ import ImageSlider from "@/components/ImageDisplay/ImageSilder";
 import getEvent from "@/libs/getEvent";
 import Link from "next/link";
 
-// -------- MOCK FALLBACK DATA --------
-const mockEvent = {
-  _id: "1",
-  name: "Football Tryout",
-  eventDate: "2025-12-15",
-  venue: "CU Sports Complex",
-  organizer: "Organizer Name",
-  availableTicket: 3,
-  description:
-    "Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...",
-  posterPicture: "",
-};
-
-// -------- FETCH REAL EVENT --------
-async function fetchEvent(id: string) {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/events/${id}`,
-      { cache: "no-store" }
-    );
-
-    if (!res.ok) return mockEvent;
-
-    const json = await res.json();
-    return json.data || mockEvent;
-  } catch {
-    return mockEvent;
-  }
-}
-
 export default async function EventDetailPage({
   params,
 }: {
@@ -43,6 +13,7 @@ export default async function EventDetailPage({
   const event = (await getEvent(eventId)).data;
 
   console.log(event);
+
 
   return (
     <div className="px-10 py-10 min-h-screen w-full min-h-screen">
