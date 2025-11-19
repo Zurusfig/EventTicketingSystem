@@ -1,7 +1,5 @@
 "use client";
 import { useState } from "react";
-import {getServerSession} from "next-auth";
-import {authOptions} from "@/app/api/auth/authOptions";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import TopMenuItem from "./TopMenuItem";
@@ -107,16 +105,14 @@ export default function TopMenu() {
         {/* Mobile Log In Button */}
         <div className="px-4 py-4 flex justify-between">
           {session ? (
-              <Link href="/profile">
-              <button className="text-sm md:text-lg cursor-pointer rounded-full bg-navy-color mx-2 px-6 py-2 hover:scale-105 transition-all duration-300">
+              <Link href="/profile" className="text-sm md:text-lg cursor-pointer rounded-full bg-navy-color mx-2 px-6 py-2 hover:scale-105 transition-all duration-300">
                 <div className="text-nowrap text-gradient-primary font-black text-stroke-navy-color">{session.user?.name}</div>
-              </button>
-            </Link>
+              </Link>
             ) : (
               <Link href="/api/auth/signin">
-                <button className="text-nowrap text-sm md:text-md cursor-pointer rounded-full bg-lime-color text-navy-color px-6 py-2 hover:bg-lime-color/90 hover:scale-105 transition-all duration-300">
+                <div className="text-nowrap text-sm md:text-md cursor-pointer rounded-full bg-lime-color text-navy-color px-6 py-2 hover:bg-lime-color/90 hover:scale-105 transition-all duration-300">
                   Log In
-                </button>
+                </div>
               </Link>
             )}
             <div className="flex justify-center items-center">
