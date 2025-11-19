@@ -27,7 +27,7 @@ export default function Home() {
     >
 
       {/* ---------- MAIN CONTENT (Centered) ---------- */}
-      <div className="flex flex-col items-center mt-10">
+      <div className="flex flex-col items-center mt-35">
 
         <h1 className="text-4xl font-bold text-center text-[#222] text-text-color">
           Welcome to The Performers
