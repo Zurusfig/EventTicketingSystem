@@ -26,7 +26,8 @@ export function useLoginForm() {
     });
 
     if (res?.error) {
-      setError(res.error);
+      setError("Login failed. Please check your credentials and try again.");
+      console.log("Login failed", res.error);
     } else if (res?.url) {
       window.location.href = res.url || "/";
     }

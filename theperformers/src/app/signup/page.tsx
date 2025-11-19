@@ -1,8 +1,27 @@
+"use client";
 import AuthCard from "@/components/Auth/AuthCard";
 import RegisterForm from "@/components/Auth/RegisterForm";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function RegisterPage() {
+
+  const { data: session } = useSession();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (session?.user) {
+            router.push("/"); // Redirect to home if already logged in
+        }
+    }, [session, router]);
+
+
+    // Don't render form if user is logged in (while redirecting)
+    if (session?.user) {
+        return null;
+    }
 
     return (
         <div className="min-h-screen fixed inset-0 overflow-hidden">
