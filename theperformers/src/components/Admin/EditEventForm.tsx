@@ -18,6 +18,7 @@ type EventData = {
 };
 
 export default function EditEventForm({ eventId }: { eventId: string }) {
+  console.log("eventId on edit event form", eventId);
   const { data: session } = useSession();
 
   const [event, setEvent] = useState<EventData | null>(null);

@@ -1,6 +1,10 @@
 import EditEventForm from "@/components/Admin/EditEventForm";
 
-export default function EditEventPage({ params }: { params: { eventId: string } }) {
+export default async function EditEventPage({ params,
+}: {
+  params: Promise<{ eventId: string }>;
+}) {
+  const { eventId } = await params;
   return (
     <div
       className="px-4 sm:px-10 py-8 min-h-screen w-full 
@@ -10,7 +14,7 @@ export default function EditEventPage({ params }: { params: { eventId: string } 
         Edit Event
       </h1>
 
-      <EditEventForm eventId={params.eventId} />
+      <EditEventForm eventId={eventId} />
     </div>
   );
 }
