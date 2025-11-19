@@ -35,6 +35,7 @@ export default function TicketsPage(){
             console.log("Tickets:", respone.data);
         } catch (error: any) {
             setError(error.message);
+            setTickets([]);
         } finally {
             setIsLoading(false);
         }
